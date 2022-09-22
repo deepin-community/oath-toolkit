@@ -1,0 +1,1 @@
+extend-diff-ignore=.version|Makefile|config.log|config.status|liboath/gtk-doc/tmpl/.*.sgml|liboath/man/Makefile.gdoc

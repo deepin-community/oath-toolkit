@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+%:
+	dh $@ --builddirectory=build \
+		-O--dbgsym-migration='oath-dbg (<< 2.6.1-2~)'
+
+override_dh_autoreconf:
+	GTKDOCIZE=true dh_autoreconf
+
+override_dh_auto_configure:
+	rm -f oathtool/oathtool_cmd.h pskctool/pskctool_cmd.h
+	dh_auto_configure -- \
+		--disable-rpath \
+		--disable-gtk-doc \
+		--with-pam-dir=/lib/$(DEB_HOST_MULTIARCH)/security
+
+override_dh_auto_install:
+	dh_auto_install
+	find debian/tmp -name "*.la" -exec rm -f {} +

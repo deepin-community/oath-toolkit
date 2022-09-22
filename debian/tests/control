@@ -1,0 +1,8 @@
+Tests: liboath libpskc oathtool pskctool
+Depends: build-essential,
+         liboath-dev,
+         libpskc-dev,
+         man,
+         oathtool,
+         pkg-config,
+         pskctool

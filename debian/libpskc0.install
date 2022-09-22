@@ -1,0 +1,5 @@
+usr/lib/*/libpskc.so.*
+usr/share/xml/pskc/catalog-pskc.xml
+usr/share/xml/pskc/pskc-schema.xsd
+usr/share/xml/pskc/xenc-schema.xsd
+usr/share/xml/pskc/xmldsig-core-schema.xsd

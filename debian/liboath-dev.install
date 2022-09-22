@@ -1,0 +1,5 @@
+usr/include/liboath/*
+usr/lib/*/liboath.a
+usr/lib/*/liboath.so
+usr/lib/*/pkgconfig/liboath.pc
+usr/share/man/man3/oath*

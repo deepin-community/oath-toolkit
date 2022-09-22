@@ -1,0 +1,3 @@
+libpskc/examples/*.c
+libpskc/examples/*.txt
+libpskc/examples/*.xml

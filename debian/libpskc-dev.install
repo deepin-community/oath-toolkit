@@ -1,0 +1,5 @@
+usr/include/pskc/*
+usr/lib/*/libpskc.a
+usr/lib/*/libpskc.so
+usr/lib/*/pkgconfig/libpskc.pc
+usr/share/man/man3/pskc*

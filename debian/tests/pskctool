@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+srcdir=pskctool/tests PSKCTOOL=pskctool pskctool/tests/tst_libexamples.sh
+srcdir=pskctool/tests PSKCTOOL=pskctool pskctool/tests/tst_pskctool.sh
+srcdir=pskctool/tests PSKCTOOL=pskctool pskctool/tests/tst_roundtrip.sh
+srcdir=pskctool/tests PSKCTOOL=pskctool pskctool/tests/tst_sign.sh
+
+exit 0

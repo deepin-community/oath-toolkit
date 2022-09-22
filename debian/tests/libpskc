@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+WORKDIR=$(mktemp -d)
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+cat <<EOF > libpskctest.c
+#include <pskc/pskc.h>
+
+int main(void)
+{
+  if (!pskc_check_version (PSKC_VERSION))
+    return 1;
+
+  return 0;
+}
+EOF
+
+gcc -o libpskctest libpskctest.c `pkg-config --cflags --libs libpskc`
+echo "PASS: gcc"
+[ -x libpskctest ]
+./libpskctest
+echo "PASS: run"
+man -P cat pskctool
+man -P cat pskc_global_init
+echo "PASS: man"
+pskctool --version
+pskctool --help
+pskctool --version | head -1 | (! grep -v '(OATH Toolkit)')
+echo "PASS: pskctool libpskc version"
