@@ -1,6 +1,6 @@
 /*
  * pskc/enums.h - PSKC header file with enum prototypes.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@
  */
 
 #ifndef PSKC_ENUMS_H
-#define PSKC_ENUMS_H
+# define PSKC_ENUMS_H
 
 /**
  * SECTION:enums

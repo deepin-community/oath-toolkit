@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-gtk-doc-pdf
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
 SUBDIRS = gl liboath oathtool
 
@@ -28,9 +28,9 @@ endif
 
 ACLOCAL_AMFLAGS = -I m4 -I gl/m4
 
-EXTRA_DIST = GNUmakefile .clcopying cfg.mk maint.mk
+EXTRA_DIST = GNUmakefile cfg.mk maint.mk
 EXTRA_DIST += build-aux/oath-toolkit-version m4/dummy.m4
-EXTRA_DIST += HACKING
+EXTRA_DIST += CONTRIBUTING.md
 
 # Website
 EXTRA_DIST += website/asciidoc.css website/build-website.sh		\
@@ -43,5 +43,14 @@ EXTRA_DIST += $(top_srcdir)/.version
 BUILT_SOURCES = $(top_srcdir)/.version
 $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
-dist-hook:
+dist-hook: gen-ChangeLog
 	echo $(VERSION) > $(distdir)/.tarball-version
+
+.PHONY: gen-ChangeLog
+gen-ChangeLog:
+	$(AM_V_GEN)if test -d .git; then				\
+	  $(top_srcdir)/build-aux/gitlog-to-changelog			\
+						> $(distdir)/cl-t &&	\
+	    { rm -f $(distdir)/ChangeLog &&				\
+	      mv $(distdir)/cl-t $(distdir)/ChangeLog; }		\
+	fi

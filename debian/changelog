@@ -1,3 +1,21 @@
+oath-toolkit (2.6.9-1) unstable; urgency=medium
+
+  * New upstream version 2.6.9
+  * Use faketime instead of datefudge.  Closes: #1031571.
+  * Drop NMU patch, now resolved upstream.
+  * Bump Standards-Version 4.6.2 from 4.6.0.
+  * Drop gbp dch id-length.
+  * Add lintian-overrides for false positive of source-is-missing.
+
+ -- Simon Josefsson <simon@josefsson.org>  Tue, 11 Jul 2023 15:21:36 +0200
+
+oath-toolkit (2.6.7-3.1) unstable; urgency=medium
+
+  * Non-maintainer upload with maintainer permission.
+  * handle libxmlsec 1.2.35 (closes: #1023038)
+
+ -- Rene Engelhard <rene@debian.org>  Sun, 13 Nov 2022 09:51:39 +0100
+
 oath-toolkit (2.6.7-3) unstable; urgency=medium
 
   * [b2aa2f4] Drop example Makefiles, fixing multiarch:same file conflict.

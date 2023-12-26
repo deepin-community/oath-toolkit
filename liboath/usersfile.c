@@ -1,6 +1,6 @@
 /*
  * usersfile.c - implementation of UsersFile based HOTP validation
- * Copyright (C) 2009-2021 Simon Josefsson
+ * Copyright (C) 2009-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -30,6 +30,8 @@
 #include <fcntl.h>		/* For fcntl. */
 #include <errno.h>		/* For errno. */
 #include <sys/stat.h>		/* For S_IRUSR, S_IWUSR. */
+
+#ifndef _WIN32
 
 static int
 parse_type (const char *str, unsigned *digits, unsigned *totpstepsize)
@@ -73,7 +75,7 @@ parse_type (const char *str, unsigned *digits, unsigned *totpstepsize)
 }
 
 static const char *whitespace = " \t\r\n";
-#define TIME_FORMAT_STRING "%Y-%m-%dT%H:%M:%SL"
+# define TIME_FORMAT_STRING "%Y-%m-%dT%H:%M:%SL"
 
 static int
 parse_usersfile (const char *username,
@@ -385,10 +387,11 @@ update_usersfile (const char *usersfile,
   {
     struct stat insb;
 
-    if(rc == OATH_OK && fstat(fileno(infh), &insb) == -1)
+    if (rc == OATH_OK && fstat (fileno (infh), &insb) == -1)
       rc = OATH_FILE_STAT_ERROR;
 
-    if(rc == OATH_OK && fchown(fileno(outfh), insb.st_uid, insb.st_gid) != 0)
+    if (rc == OATH_OK
+	&& fchown (fileno (outfh), insb.st_uid, insb.st_gid) != 0)
       rc = OATH_FILE_CHOWN_ERROR;
   }
 
@@ -504,3 +507,18 @@ oath_authenticate_usersfile (const char *usersfile,
 
   return rc;
 }
+
+#else /* _WIN32 */
+
+int
+oath_authenticate_usersfile (const char *usersfile,
+			     const char *username,
+			     const char *otp,
+			     size_t window,
+			     const char *passwd, time_t * last_otp)
+{
+  /* The main reason we don't support this on Windows yet is file
+   * locking. So return that as the error. */
+  return OATH_FILE_LOCK_ERROR;
+}
+#endif

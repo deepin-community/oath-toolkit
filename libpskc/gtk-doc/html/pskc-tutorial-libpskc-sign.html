@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Digitally sign PSKC data: PSKC Library (libpskc) Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="PSKC Library (libpskc) Manual">
 <link rel="up" href="pskc-tutorial-library.html" title="Library libpskc">
 <link rel="prev" href="pskc-tutorial-library.html" title="Library libpskc">
 <link rel="next" href="pskc-tutorial-libpskc-verify.html" title="Verify signed PSKC data">
-<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -80,54 +80,54 @@
 46
 47
 48</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="gtkdoc ppc">#include &lt;stdio.h&gt;</span>
-<span class="gtkdoc ppc">#include &lt;pskc/pskc.h&gt;</span>
+        <td class="listing_code"><pre class="programlisting"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pskc/pskc.h&gt;</span><span class="cp"></span>
 
-<span class="comment">/*</span>
-<span class="comment"> * $ cc -o pskcsign pskcsign.c $(pkg-config --cflags --libs libpskc)</span>
-<span class="comment"> * $ ./pskcsign pskc-hotp.xml pskc-ee-key.pem pskc-ee-crt.pem &gt; signed.xml</span>
-<span class="comment"> */</span>
+<span class="cm">/*</span>
+<span class="cm"> * $ cc -o pskcsign pskcsign.c $(pkg-config --cflags --libs libpskc)</span>
+<span class="cm"> * $ ./pskcsign pskc-hotp.xml pskc-ee-key.pem pskc-ee-crt.pem &gt; signed.xml</span>
+<span class="cm"> */</span><span class="w"></span>
 
-<span class="gtkdoc ppc">#define PSKC_CHECK_RC					   \</span>
-<span class="gtkdoc ppc">  if (rc != PSKC_OK) {					   \</span>
-<span class="gtkdoc ppc">    printf (</span><span class="gtkdoc pps">&quot;%s (%d): %s</span><span class="gtkdoc esc">\n</span><span class="gtkdoc pps">&quot;</span><span class="gtkdoc ppc">, pskc_strerror_name (rc),	   \</span>
-<span class="gtkdoc ppc">	    rc, pskc_strerror (rc));			   \</span>
-<span class="gtkdoc ppc">    return 1;						   \</span>
-<span class="gtkdoc ppc">  }</span>
+<span class="cp">#define PSKC_CHECK_RC					   \</span>
+<span class="cp">  if (rc != PSKC_OK) {					   \</span>
+<span class="cp">    printf (&quot;%s (%d): %s\n&quot;, pskc_strerror_name (rc),	   \</span>
+<span class="cp">	    rc, pskc_strerror (rc));			   \</span>
+<span class="cp">    return 1;						   \</span>
+<span class="cp">  }</span>
 
-<span class="gtkdoc kwb">int</span>
-<span class="function">main</span> <span class="gtkdoc opt">(</span><span class="gtkdoc kwb">int</span> argc<span class="gtkdoc opt">,</span> <span class="gtkdoc kwb">const char</span> <span class="gtkdoc opt">*</span>argv<span class="gtkdoc opt">[])</span>
-<span class="gtkdoc opt">{</span>
-  <span class="gtkdoc kwb">char</span> buffer<span class="gtkdoc opt">[</span><span class="number">4096</span><span class="gtkdoc opt">];</span>
-  <span class="gtkdoc kwb">FILE</span> <span class="gtkdoc opt">*</span>fh <span class="gtkdoc opt">=</span> <span class="function">fopen</span> <span class="gtkdoc opt">(</span>argv<span class="gtkdoc opt">[</span><span class="number">1</span><span class="gtkdoc opt">],</span> <span class="string">&quot;r&quot;</span><span class="gtkdoc opt">);</span>
-  <span class="gtkdoc kwb">size_t</span> len <span class="gtkdoc opt">=</span> <span class="function">fread</span> <span class="gtkdoc opt">(</span>buffer<span class="gtkdoc opt">,</span> <span class="number">1</span><span class="gtkdoc opt">,</span> <span class="keyword">sizeof</span> <span class="gtkdoc opt">(</span>buffer<span class="gtkdoc opt">),</span> fh<span class="gtkdoc opt">);</span>
-  pskc_t <span class="gtkdoc opt">*</span>container<span class="gtkdoc opt">;</span>
-  <span class="gtkdoc kwb">char</span> <span class="gtkdoc opt">*</span>out<span class="gtkdoc opt">;</span>
-  <span class="gtkdoc kwb">int</span> rc<span class="gtkdoc opt">;</span>
+<span class="kt">int</span><span class="w"></span>
+<span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fread</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span><span class="w"> </span><span class="n">fh</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pskc_t</span><span class="w"> </span><span class="o">*</span><span class="n">container</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">out</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rc</span><span class="p">;</span><span class="w"></span>
 
-  <span class="function">fclose</span> <span class="gtkdoc opt">(</span>fh<span class="gtkdoc opt">);</span>
+<span class="w">  </span><span class="n">fclose</span><span class="w"> </span><span class="p">(</span><span class="n">fh</span><span class="p">);</span><span class="w"></span>
 
-  rc <span class="gtkdoc opt">=</span> <span class="function"><a href="libpskc-global.html#pskc-global-init">pskc_global_init</a></span> <span class="gtkdoc opt">();</span>
-  PSKC_CHECK_RC<span class="gtkdoc opt">;</span>
+<span class="w">  </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pskc_global_init</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">PSKC_CHECK_RC</span><span class="p">;</span><span class="w"></span>
 
-  rc <span class="gtkdoc opt">=</span> <span class="function"><a href="libpskc-container.html#pskc-init">pskc_init</a></span> <span class="gtkdoc opt">(&amp;</span>container<span class="gtkdoc opt">);</span>
-  PSKC_CHECK_RC<span class="gtkdoc opt">;</span>
-  rc <span class="gtkdoc opt">=</span> <span class="function"><a href="libpskc-container.html#pskc-parse-from-memory">pskc_parse_from_memory</a></span> <span class="gtkdoc opt">(</span>container<span class="gtkdoc opt">,</span> len<span class="gtkdoc opt">,</span> buffer<span class="gtkdoc opt">);</span>
-  PSKC_CHECK_RC<span class="gtkdoc opt">;</span>
+<span class="w">  </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pskc_init</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">container</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">PSKC_CHECK_RC</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pskc_parse_from_memory</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">PSKC_CHECK_RC</span><span class="p">;</span><span class="w"></span>
 
-  rc <span class="gtkdoc opt">=</span> <span class="function"><a href="libpskc-container.html#pskc-sign-x509">pskc_sign_x509</a></span> <span class="gtkdoc opt">(</span>container<span class="gtkdoc opt">,</span> argv<span class="gtkdoc opt">[</span><span class="number">2</span><span class="gtkdoc opt">],</span> argv<span class="gtkdoc opt">[</span><span class="number">3</span><span class="gtkdoc opt">]);</span>
-  PSKC_CHECK_RC<span class="gtkdoc opt">;</span>
+<span class="w">  </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pskc_sign_x509</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="n">PSKC_CHECK_RC</span><span class="p">;</span><span class="w"></span>
 
-  rc <span class="gtkdoc opt">=</span> <span class="function"><a href="libpskc-container.html#pskc-output">pskc_output</a></span> <span class="gtkdoc opt">(</span>container<span class="gtkdoc opt">,</span> PSKC_OUTPUT_XML<span class="gtkdoc opt">, &amp;</span>out<span class="gtkdoc opt">, &amp;</span>len<span class="gtkdoc opt">);</span>
-  PSKC_CHECK_RC<span class="gtkdoc opt">;</span>
-  <span class="function">fwrite</span> <span class="gtkdoc opt">(</span>out<span class="gtkdoc opt">,</span> <span class="number">1</span><span class="gtkdoc opt">,</span> len<span class="gtkdoc opt">,</span> stdout<span class="gtkdoc opt">);</span>
-  <span class="function"><a href="libpskc-global.html#pskc-free">pskc_free</a></span> <span class="gtkdoc opt">(</span>out<span class="gtkdoc opt">);</span>
+<span class="w">  </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pskc_output</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="n">PSKC_OUTPUT_XML</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">len</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">PSKC_CHECK_RC</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">fwrite</span><span class="w"> </span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pskc_free</span><span class="w"> </span><span class="p">(</span><span class="n">out</span><span class="p">);</span><span class="w"></span>
 
-  <span class="function"><a href="libpskc-container.html#pskc-done">pskc_done</a></span> <span class="gtkdoc opt">(</span>container<span class="gtkdoc opt">);</span>
-  <span class="function"><a href="libpskc-global.html#pskc-global-done">pskc_global_done</a></span> <span class="gtkdoc opt">();</span>
+<span class="w">  </span><span class="n">pskc_done</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pskc_global_done</span><span class="w"> </span><span class="p">();</span><span class="w"></span>
 
-  <span class="keyword">return</span> <span class="number">0</span><span class="gtkdoc opt">;</span>
-<span class="gtkdoc opt">}</span></pre></td>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -143,9 +143,9 @@
         <td class="listing_lines" align="right"><pre>1
 2
 3</pre></td>
-        <td class="listing_code"><pre class="programlisting">jas&#64;latte<span class="gtkdoc opt">:~</span>$ cc <span class="gtkdoc opt">-</span>o pskcsign pskcsign<span class="gtkdoc opt">.</span>c $<span class="gtkdoc opt">(</span>pkg<span class="gtkdoc opt">-</span>config <span class="gtkdoc opt">--</span>cflags <span class="gtkdoc opt">--</span>libs libpskc<span class="gtkdoc opt">)</span>
-jas&#64;latte<span class="gtkdoc opt">:~</span>$ <span class="gtkdoc opt">./</span>pskcsign pskc<span class="gtkdoc opt">-</span>hotp<span class="gtkdoc opt">.</span>xml pskc<span class="gtkdoc opt">-</span>ee<span class="gtkdoc opt">-</span>key<span class="gtkdoc opt">.</span>pem pskc<span class="gtkdoc opt">-</span>ee<span class="gtkdoc opt">-</span>crt<span class="gtkdoc opt">.</span>pem <span class="gtkdoc opt">&gt;</span> <span class="gtkdoc kwb">signed</span><span class="gtkdoc opt">.</span>xml
-jas&#64;latte<span class="gtkdoc opt">:~</span>$</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">jas</span><span class="err">@</span><span class="n">latte</span><span class="o">:~</span><span class="n">$</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">pskcsign</span><span class="w"> </span><span class="n">pskcsign</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">cflags</span><span class="w"> </span><span class="o">--</span><span class="n">libs</span><span class="w"> </span><span class="n">libpskc</span><span class="p">)</span><span class="w"></span>
+<span class="n">jas</span><span class="err">@</span><span class="n">latte</span><span class="o">:~</span><span class="n">$</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">pskcsign</span><span class="w"> </span><span class="n">pskc</span><span class="o">-</span><span class="n">hotp</span><span class="p">.</span><span class="n">xml</span><span class="w"> </span><span class="n">pskc</span><span class="o">-</span><span class="n">ee</span><span class="o">-</span><span class="n">key</span><span class="p">.</span><span class="n">pem</span><span class="w"> </span><span class="n">pskc</span><span class="o">-</span><span class="n">ee</span><span class="o">-</span><span class="n">crt</span><span class="p">.</span><span class="n">pem</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="kt">signed</span><span class="p">.</span><span class="n">xml</span><span class="w"></span>
+<span class="n">jas</span><span class="err">@</span><span class="n">latte</span><span class="o">:~</span><span class="n">$</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -159,6 +159,6 @@ jas&#64;latte<span class="gtkdoc opt">:~</span>$</pre></td>
 	</p>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.28</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

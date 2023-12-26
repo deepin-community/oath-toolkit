@@ -100,7 +100,7 @@ eval '(exit $?0)' && eval 'exec perl -S "$0" ${1+"$@"}'
 #  * my_function
 #  **/
 #
-# If the Description: header tag is ommitted, then there must be a blank line
+# If the Description: header tag is omitted, then there must be a blank line
 # after the last parameter specification.
 # e.g.
 # /**

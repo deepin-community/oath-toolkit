@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ ifeq ($(.DEFAULT_GOAL),abort-due-to-no-makefile)
 .DEFAULT_GOAL := bootstrap
 endif
 
-INDENT_SOURCES = `find . -name '*.[ch]' | grep -v -e /gl/ -e build-aux`
+INDENT_SOURCES = `find . -name '*.[ch]' | grep -v -e /gl/ -e build-aux -e /config.h -e _cmd.`
 
 autoreconf:
 	printf "gdoc_MANS =\ngdoc_TEXINFOS =\n" > liboath/man/Makefile.gdoc
@@ -51,6 +51,9 @@ exclude_file_name_regexp--sc_require_config_h_first = $(exclude_file_name_regexp
 exclude_file_name_regexp--sc_trailing_blank = ^m4/pkg.m4|libpskc/examples/pskctool-h.txt$$
 exclude_file_name_regexp--sc_two_space_separator_in_usage = ^pskctool/tests/
 exclude_file_name_regexp--sc_space_tab = ^m4/pkg.m4$$
+exclude_file_name_regexp--sc_avoid_if_before_free = ^pam_oath/pam_modutil.c$$
+exclude_file_name_regexp--sc_readme_link_copying = ^libpskc/README|pam_oath/README$$
+exclude_file_name_regexp--sc_readme_link_install = $(exclude_file_name_regexp--sc_readme_link_copying)
 
 update-copyright-env = UPDATE_COPYRIGHT_HOLDER="Simon Josefsson" UPDATE_COPYRIGHT_USE_INTERVALS=2
 
@@ -66,22 +69,17 @@ glimport:
 review-diff:
 	git diff `git describe --abbrev=0`.. \
 	| grep -v -e ^index -e '^diff --git' \
-	| filterdiff -p 1 -x 'build-aux/*' -x '*/build-aux/*' -x 'gl/*' -x '*/gl/*' -x 'gltests/*' -x '*/gltests/*' -x 'maint.mk' -x '.gitignore' -x '.x-sc*' -x 'ChangeLog' -x 'GNUmakefile' -x '.clcopying' \
+	| filterdiff -p 1 -x 'build-aux/*' -x '*/build-aux/*' -x 'gl/*' -x '*/gl/*' -x 'gltests/*' -x '*/gltests/*' -x 'maint.mk' -x '.gitignore' -x '.x-sc*' -x 'ChangeLog' -x 'GNUmakefile' \
 	| less
 
 # Release
 
-tag = $(PACKAGE)-`echo $(VERSION) | sed 's/\./-/g'`
+tag = $(PACKAGE)-$(VERSION)
 htmldir = ../www-$(PACKAGE)
-
-ChangeLog:
-	git2cl > ChangeLog
-	cat .clcopying >> ChangeLog
 
 tarball:
 	test `git describe` = `git tag -l $(tag)`
-	rm -f ChangeLog
-	$(MAKE) ChangeLog distcheck
+	$(MAKE) distcheck
 
 .PHONY: website
 website:

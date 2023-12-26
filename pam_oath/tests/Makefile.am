@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,10 +19,17 @@ LDADD = ../pam_oath.la -lpam
 
 EXTRA_DIST = expect.oath
 
-TESTS = test-pam_oath
+TESTS =
+
+check_PROGRAMS =
+
+if TEST_PAM
+TESTS += test-pam_oath
+check_PROGRAMS += test-pam_oath$(EXEEXT)
+
 if ROOT_TESTS
 TESTS += run-root-tests.sh
-endif
-
-check_PROGRAMS = test-pam_oath$(EXEEXT) test-pam_oath-root$(EXEEXT)
+check_PROGRAMS += test-pam_oath-root$(EXEEXT)
 dist_check_SCRIPTS = run-root-tests.sh
+endif
+endif

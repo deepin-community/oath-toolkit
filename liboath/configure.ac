@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as
@@ -91,12 +91,19 @@ if test "$gl_gcc_warnings" = yes; then
   AC_DEFINE([GNULIB_POSIXCHECK], [1], [enable some gnulib portability checks])
 fi
 
+windows_build=no
+case "$host_os" in
+  *mingw32*|*mingw64*|*msys*)
+    windows_build=yes
+    ;;
+esac
+AM_CONDITIONAL([TEST_USERSFILE], [test "x$windows_build" = "xno"])
+
 AC_CONFIG_FILES([
   Makefile
   liboath.pc
   oath.h
   gl/Makefile
-  gl/tests/Makefile
   tests/Makefile
   gtk-doc/Makefile
   gtk-doc/version.xml

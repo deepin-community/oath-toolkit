@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,8 +29,7 @@ LT_INIT([disable-static])
 
 AC_CHECK_HEADERS([security/pam_appl.h], [],
   [AC_MSG_ERROR([[PAM header files not found, install libpam-dev.]])])
-AC_CHECK_HEADERS([security/pam_modutil.h], [],
-  [AC_MSG_ERROR([[PAM header files not found, install libpam-dev.]])])
+AC_CHECK_HEADERS([security/pam_modutil.h], [], [])
 AC_CHECK_HEADERS([security/pam_modules.h security/_pam_macros.h], [], [],
   [#include <security/pam_appl.h>])
 
@@ -50,8 +49,17 @@ AC_MSG_NOTICE([PAM installation path $PAMDIR])
 AC_ARG_ENABLE(root-tests,
   AS_HELP_STRING([--enable-root-tests],
                  [enable some self-tests that need root permissions]),
-  root_tests=yes, root_tests=$enableval)
+  root_tests=$enableval, root_tests=no)
 AM_CONDITIONAL([ROOT_TESTS], [test x$root_tests = xyes])
+
+AC_ARG_ENABLE(pam-tests,
+  AS_HELP_STRING([--disable-pam-tests],
+                 [disable PAM self-tests that requires linking a module]),
+  linkable_modules=$enableval,
+  [case "$host_os" in
+     darwin*) linkable_modules=no;;
+   esac])
+AM_CONDITIONAL([TEST_PAM], [test "x$linkable_modules" != "xno"])
 
 AC_CONFIG_FILES([
   Makefile

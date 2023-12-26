@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PSKC Introduction: PSKC Library (libpskc) Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="PSKC Library (libpskc) Manual">
 <link rel="up" href="pskc-tutorial.html" title="Part I. PSKC Tutorial">
 <link rel="prev" href="pskc-tutorial.html" title="Part I. PSKC Tutorial">
 <link rel="next" href="pskc-tutorial-library.html" title="Library libpskc">
-<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -43,10 +43,10 @@
 2
 3
 4</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="gtkdoc opt">&lt;?</span>xml version<span class="gtkdoc opt">=</span><span class="string">&quot;1.0&quot;</span><span class="gtkdoc opt">?&gt;</span>
-<span class="gtkdoc opt">&lt;</span>KeyContainer xmlns<span class="gtkdoc opt">=</span><span class="string">&quot;urn:ietf:params:xml:ns:keyprov:pskc&quot;</span> Version<span class="gtkdoc opt">=</span><span class="string">&quot;1.0&quot;</span><span class="gtkdoc opt">&gt;</span>
-  <span class="gtkdoc opt">&lt;</span>KeyPackage<span class="gtkdoc opt">/&gt;</span>
-<span class="gtkdoc opt">&lt;/</span>KeyContainer<span class="gtkdoc opt">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;?</span><span class="n">xml</span><span class="w"> </span><span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span><span class="o">?&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">KeyContainer</span><span class="w"> </span><span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;urn:ietf:params:xml:ns:keyprov:pskc&quot;</span><span class="w"> </span><span class="n">Version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">KeyPackage</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">KeyContainer</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -91,31 +91,31 @@
 23
 24
 25</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="gtkdoc opt">&lt;?</span>xml version<span class="gtkdoc opt">=</span><span class="string">&quot;1.0&quot;</span> encoding<span class="gtkdoc opt">=</span><span class="string">&quot;UTF-8&quot;</span><span class="gtkdoc opt">?&gt;</span>
-<span class="gtkdoc opt">&lt;</span>KeyContainer Version<span class="gtkdoc opt">=</span><span class="string">&quot;1.0&quot;</span>
-	      xmlns<span class="gtkdoc opt">=</span><span class="string">&quot;urn:ietf:params:xml:ns:keyprov:pskc&quot;</span><span class="gtkdoc opt">&gt;</span>
-  <span class="gtkdoc opt">&lt;</span>KeyPackage<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;</span>DeviceInfo<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>Manufacturer<span class="gtkdoc opt">&gt;</span>Manufacturer<span class="gtkdoc opt">&lt;/</span>Manufacturer<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>SerialNo<span class="gtkdoc opt">&gt;</span><span class="number">987654321</span><span class="gtkdoc opt">&lt;/</span>SerialNo<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;/</span>DeviceInfo<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;</span>Key Id<span class="gtkdoc opt">=</span><span class="string">&quot;12345678&quot;</span>
-         Algorithm<span class="gtkdoc opt">=</span><span class="string">&quot;urn:ietf:params:xml:ns:keyprov:pskc:hotp&quot;</span><span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>AlgorithmParameters<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;</span>ResponseFormat Length<span class="gtkdoc opt">=</span><span class="string">&quot;8&quot;</span> Encoding<span class="gtkdoc opt">=</span><span class="string">&quot;DECIMAL&quot;</span><span class="gtkdoc opt">/&gt;</span>
-      <span class="gtkdoc opt">&lt;/</span>AlgorithmParameters<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>Data<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;</span>Secret<span class="gtkdoc opt">&gt;</span>
-          <span class="gtkdoc opt">&lt;</span>PlainValue<span class="gtkdoc opt">&gt;</span>MTIzNDU2Nzg5MDEyMzQ1Njc4OTA<span class="gtkdoc opt">=</span>
-          <span class="gtkdoc opt">&lt;/</span>PlainValue<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;/</span>Secret<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;</span>Counter<span class="gtkdoc opt">&gt;</span>
-          <span class="gtkdoc opt">&lt;</span>PlainValue<span class="gtkdoc opt">&gt;</span><span class="number">0</span><span class="gtkdoc opt">&lt;/</span>PlainValue<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;/</span>Counter<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;/</span>Data<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;/</span>Key<span class="gtkdoc opt">&gt;</span>
-  <span class="gtkdoc opt">&lt;/</span>KeyPackage<span class="gtkdoc opt">&gt;</span>
-<span class="gtkdoc opt">&lt;/</span>KeyContainer<span class="gtkdoc opt">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;?</span><span class="n">xml</span><span class="w"> </span><span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span><span class="w"> </span><span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">KeyContainer</span><span class="w"> </span><span class="n">Version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span><span class="w"></span>
+<span class="w">	      </span><span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;urn:ietf:params:xml:ns:keyprov:pskc&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">KeyPackage</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">DeviceInfo</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">Manufacturer</span><span class="o">&gt;</span><span class="n">Manufacturer</span><span class="o">&lt;/</span><span class="n">Manufacturer</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">SerialNo</span><span class="o">&gt;</span><span class="mi">987654321</span><span class="o">&lt;/</span><span class="n">SerialNo</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">DeviceInfo</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">Key</span><span class="w"> </span><span class="n">Id</span><span class="o">=</span><span class="s">&quot;12345678&quot;</span><span class="w"></span>
+<span class="w">         </span><span class="n">Algorithm</span><span class="o">=</span><span class="s">&quot;urn:ietf:params:xml:ns:keyprov:pskc:hotp&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">AlgorithmParameters</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">ResponseFormat</span><span class="w"> </span><span class="n">Length</span><span class="o">=</span><span class="s">&quot;8&quot;</span><span class="w"> </span><span class="n">Encoding</span><span class="o">=</span><span class="s">&quot;DECIMAL&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">AlgorithmParameters</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">Secret</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="n">MTIzNDU2Nzg5MDEyMzQ1Njc4OTA</span><span class="o">=</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;/</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">Secret</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">Counter</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">Counter</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">Key</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">KeyPackage</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">KeyContainer</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -123,6 +123,6 @@
 
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.28</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

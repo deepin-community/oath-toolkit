@@ -1,6 +1,6 @@
 /*
  * pskc/keypackage.h - PSKC header file with keypackage function prototypes.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@
  */
 
 #ifndef PSKC_KEYPACKAGE_H
-#define PSKC_KEYPACKAGE_H
+# define PSKC_KEYPACKAGE_H
 
 /**
  * SECTION:keypackage

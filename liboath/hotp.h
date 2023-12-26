@@ -1,6 +1,6 @@
 /*
  * hotp.h - library internal function prototypes
- * Copyright (C) 2013-2021 Simon Josefsson
+ * Copyright (C) 2013-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@
  */
 
 #ifndef HOTP_H
-#define HOTP_H
+# define HOTP_H
 
 extern int
 _oath_hotp_generate2 (const char *secret,

@@ -1,10 +1,10 @@
 ## DO NOT EDIT! GENERATED AUTOMATICALLY!
 ## Process this file with automake to produce Makefile.in.
-# Copyright (C) 2002-2021 Free Software Foundation, Inc.
+# Copyright (C) 2002-2023 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
+# the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
 # This file is distributed in the hope that it will be useful,
@@ -36,10 +36,11 @@
 #  --no-vc-files \
 #  autobuild \
 #  git-version-gen \
+#  gitlog-to-changelog \
 #  maintainer-makefile \
 #  update-copyright
 
-AUTOMAKE_OPTIONS = 1.11 gnits
+AUTOMAKE_OPTIONS = 1.14 gnits
 
 SUBDIRS =
 noinst_HEADERS =
@@ -63,6 +64,7 @@ AM_CFLAGS =
 noinst_LIBRARIES += libgnu.a
 
 libgnu_a_SOURCES =
+libgnu_a_CFLAGS = $(AM_CFLAGS) $(GL_CFLAG_GNULIB_WARNINGS)
 libgnu_a_LIBADD = $(gl_LIBOBJS)
 libgnu_a_DEPENDENCIES = $(gl_LIBOBJS)
 EXTRA_libgnu_a_SOURCES =
@@ -73,6 +75,13 @@ EXTRA_libgnu_a_SOURCES =
 EXTRA_DIST += $(top_srcdir)/build-aux/git-version-gen
 
 ## end   gnulib module git-version-gen
+
+## begin gnulib module gitlog-to-changelog
+
+
+EXTRA_DIST += $(top_srcdir)/build-aux/gitlog-to-changelog
+
+## end   gnulib module gitlog-to-changelog
 
 ## begin gnulib module gnumakefile
 
@@ -124,3 +133,7 @@ mostlyclean-local: mostlyclean-generic
 	  fi; \
 	done; \
 	:
+distclean-local: distclean-gnulib-libobjs
+distclean-gnulib-libobjs:
+	-rm -f @gl_LIBOBJDEPS@
+maintainer-clean-local: distclean-gnulib-libobjs

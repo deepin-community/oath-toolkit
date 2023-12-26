@@ -1,6 +1,6 @@
 /*
  * pam_oath.c - a PAM module for OATH one-time passwords
- * Copyright (C) 2009-2021 Simon Josefsson
+ * Copyright (C) 2009-2023 Simon Josefsson
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -21,6 +21,7 @@
 #include <config.h>
 
 #include "oath.h"
+#include "pam_modutil.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +32,7 @@
 
 /* Libtool defines PIC for shared objects */
 #ifndef PIC
-#define PAM_STATIC
+# define PAM_STATIC
 #endif
 
 /* These #defines must be present according to PAM documentation. */
@@ -41,13 +42,10 @@
 #define PAM_SM_PASSWORD
 
 #ifdef HAVE_SECURITY_PAM_APPL_H
-#include <security/pam_appl.h>
-#endif
-#ifdef HAVE_SECURITY_PAM_MODUTIL_H
-#include <security/pam_modutil.h>
+# include <security/pam_appl.h>
 #endif
 #ifdef HAVE_SECURITY_PAM_MODULES_H
-#include <security/pam_modules.h>
+# include <security/pam_modules.h>
 #endif
 
 #define D(x) do {							\
@@ -58,11 +56,11 @@
 #define DBG(x) if (cfg.debug) { D(x); }
 
 #ifndef PAM_EXTERN
-#ifdef PAM_STATIC
-#define PAM_EXTERN static
-#else
-#define PAM_EXTERN extern
-#endif
+# ifdef PAM_STATIC
+#  define PAM_EXTERN static
+# else
+#  define PAM_EXTERN extern
+# endif
 #endif
 
 #define MIN_OTP_LEN 6
@@ -135,77 +133,88 @@ parse_cfg (int flags, int argc, const char **argv, struct cfg *cfg)
 }
 
 static int
-parse_usersfile_str(pam_handle_t * pamh, const struct cfg *cfg, const char *user, char **usersfile)
+parse_usersfile_str (pam_handle_t * pamh, const struct cfg *cfg,
+		     const char *user, char **usersfile)
 {
   int retval = PAM_SUCCESS;
   size_t name_len = 0;
   size_t home_len = 0;
-  size_t len = strlen(cfg->usersfile) + 1;
+  size_t len = strlen (cfg->usersfile) + 1;
   char *str = NULL;
   char *u = NULL;
   struct passwd *pw = NULL;
 
-  if(*usersfile) {
-    return PAM_BUF_ERR;
-  }
+  if (*usersfile)
+    {
+      return PAM_BUF_ERR;
+    }
 
-  pw = pam_modutil_getpwnam(pamh, user);
-  if(!pw)
+  if (strstr (cfg->usersfile, "${USER}") == NULL
+      && strstr (cfg->usersfile, "${HOME}") == NULL)
+    {
+      *usersfile = strdup (cfg->usersfile);
+      if (!*usersfile)
+	return PAM_BUF_ERR;
+      return PAM_SUCCESS;
+    }
+
+  pw = pam_modutil_getpwnam (pamh, user);
+  if (!pw)
     {
       return PAM_USER_UNKNOWN;
     }
 
   /*
-    Find occurances of the placeholder fields to determine
-    userfile buffer length
-  */
-  name_len = strlen(pw->pw_name);
-  home_len = strlen(pw->pw_dir);
+     Find occurrences of the placeholder fields to determine
+     userfile buffer length
+   */
+  name_len = strlen (pw->pw_name);
+  home_len = strlen (pw->pw_dir);
   str = cfg->usersfile;
-  while((str = strstr(str, "${USER}")))
+  while ((str = strstr (str, "${USER}")))
     {
       len += name_len;
       len -= 7;
       str += 7;
     }
   str = cfg->usersfile;
-  while((str = strstr(str, "${HOME}")))
+  while ((str = strstr (str, "${HOME}")))
     {
       len += home_len;
       len -= 7;
       str += 7;
     }
 
-  *usersfile = malloc(len);
-  if( !(*usersfile) )
+  *usersfile = malloc (len);
+  if (!(*usersfile))
     {
       return PAM_BUF_ERR;
     }
-  memset(*usersfile, 0, len);
+  memset (*usersfile, 0, len);
 
   str = cfg->usersfile;
-  u   = *usersfile;
-  while(*str)
+  u = *usersfile;
+  while (*str)
     {
-      char *c = strchr(str, '$');
-      if(c)
-        {
+      char *c = strchr (str, '$');
+      if (c)
+	{
 	  /* Copy all preceding characters */
 	  const size_t str_len = c - str;
-	  memcpy(u, str, str_len);
-	  u   += str_len;
+	  memcpy (u, str, str_len);
+	  u += str_len;
 	  str += str_len;
 
 	  const char *rpl_str = NULL;
 	  size_t rpl_len = 0;
 
-	  if(strncmp(str, "${USER}", 7) == 0)
+	  if (strncmp (str, "${USER}", 7) == 0)
 	    {
 	      rpl_str = pw->pw_name;
 	      rpl_len = name_len;
 	      str += 7;
 	    }
-	  else if(strncmp(str, "${HOME}", 7) == 0)
+	  else if (strncmp (str, "${HOME}", 7) == 0)
 	    {
 	      rpl_str = pw->pw_dir;
 	      rpl_len = home_len;
@@ -218,21 +227,21 @@ parse_usersfile_str(pam_handle_t * pamh, const struct cfg *cfg, const char *user
 	      str += 1;
 	    }
 
-	  memcpy(u, rpl_str, rpl_len);
-	  u   += rpl_len;
+	  memcpy (u, rpl_str, rpl_len);
+	  u += rpl_len;
 	}
       else
-        {
-	  size_t str_len = strlen(str);
-	  memcpy(u, str, str_len);
-	  u   += str_len;
+	{
+	  size_t str_len = strlen (str);
+	  memcpy (u, str, str_len);
+	  u += str_len;
 	  str += str_len;
 	}
     }
 done:
-  if(retval != PAM_SUCCESS)
+  if (retval != PAM_SUCCESS)
     {
-      free(*usersfile);
+      free (*usersfile);
       *usersfile = NULL;
     }
   return retval;
@@ -274,10 +283,11 @@ pam_sm_authenticate (pam_handle_t * pamh,
     }
   DBG (("get user returned: %s", user));
 
-  retval = parse_usersfile_str(pamh, &cfg, user, &usersfile);
-  if(retval != PAM_SUCCESS)
+  retval = parse_usersfile_str (pamh, &cfg, user, &usersfile);
+  if (retval != PAM_SUCCESS)
     {
-      DBG (("parse usersfile string returned error: %s", pam_strerror (pamh, retval)));
+      DBG (("parse usersfile string returned error: %s",
+	    pam_strerror (pamh, retval)));
       goto done;
     }
   DBG (("usersfile is %s", usersfile));
@@ -287,8 +297,8 @@ pam_sm_authenticate (pam_handle_t * pamh,
     time_t last_otp;
     otp[0] = '\0';
     rc = oath_authenticate_usersfile (usersfile,
-                                      user,
-                                      otp, cfg.window, onlypasswd, &last_otp);
+				      user,
+				      otp, cfg.window, onlypasswd, &last_otp);
 
     DBG (("authenticate first pass rc %d (%s: %s) last otp %s", rc,
 	  oath_strerror_name (rc) ? oath_strerror_name (rc) : "UNKNOWN",
@@ -437,7 +447,7 @@ pam_sm_authenticate (pam_handle_t * pamh,
       password = NULL;
     }
 
-  DBG (("OTP: %s", otp ? otp : "(null)"));
+  DBG (("OTP: %s", otp));
 
   {
     time_t last_otp;

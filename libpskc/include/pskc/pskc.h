@@ -1,6 +1,6 @@
 /*
  * pskc/pskc.h - PSKC header file with everything.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@
  */
 
 #ifndef PSKC_H
-#define PSKC_H
+# define PSKC_H
 
 /**
  * SECTION:pskc
@@ -33,14 +33,14 @@
  * container.
  */
 
-#ifdef __cplusplus
+# ifdef __cplusplus
 extern "C"
 {
-#endif
+# endif
 
-#include <stddef.h>		/* size_t */
-#include <stdint.h>		/* uint32_t, uint64_t */
-#include <time.h>		/* struct tm */
+# include <stddef.h>		/* size_t */
+# include <stdint.h>		/* uint32_t, uint64_t */
+# include <time.h>		/* struct tm */
 
 /**
  * pskc_t:
@@ -63,16 +63,16 @@ extern "C"
  */
   typedef struct pskc_key pskc_key_t;
 
-#include <pskc/exports.h>
-#include <pskc/version.h>
-#include <pskc/errors.h>
-#include <pskc/global.h>
-#include <pskc/container.h>
-#include <pskc/enums.h>
-#include <pskc/keypackage.h>
+# include <pskc/exports.h>
+# include <pskc/version.h>
+# include <pskc/errors.h>
+# include <pskc/global.h>
+# include <pskc/container.h>
+# include <pskc/enums.h>
+# include <pskc/keypackage.h>
 
-#ifdef __cplusplus
+# ifdef __cplusplus
 }
-#endif
+# endif
 
 #endif				/* PSKC_H */
