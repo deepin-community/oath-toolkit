@@ -1,6 +1,6 @@
 /*
  * pskc/version.h - PSKC header file with version macros.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@
  */
 
 #ifndef PSKC_VERSION_H
-#define PSKC_VERSION_H
+# define PSKC_VERSION_H
 
 /**
  * SECTION:version
@@ -38,7 +38,7 @@
  * version number.  Used together with pskc_check_version() to verify
  * header file and run-time library consistency.
  */
-#define PSKC_VERSION "@VERSION@"
+# define PSKC_VERSION "@VERSION@"
 
 /**
  * PSKC_VERSION_NUMBER
@@ -48,7 +48,7 @@
  * this symbol will have the value 0x01020300.  The last two digits
  * are only used between public releases, and will otherwise be 00.
  */
-#define PSKC_VERSION_NUMBER @VERSION_NUMBER@
+# define PSKC_VERSION_NUMBER @VERSION_NUMBER@
 
 extern PSKCAPI const char *pskc_check_version (const char *req_version);
 

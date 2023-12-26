@@ -1,6 +1,6 @@
 /*
  * sign.c - Sign PSKC data with X.509 key/cert.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -26,11 +26,11 @@
 #define INTERNAL_NEED_PSKC_STRUCT
 #include "internal.h"
 #ifdef USE_XMLSEC
-#include <xmlsec/xmlsec.h>
-#include <xmlsec/crypto.h>
-#include <xmlsec/xmltree.h>
-#include <xmlsec/xmldsig.h>
-#include <xmlsec/templates.h>
+# include <xmlsec/xmlsec.h>
+# include <xmlsec/crypto.h>
+# include <xmlsec/xmltree.h>
+# include <xmlsec/xmldsig.h>
+# include <xmlsec/templates.h>
 #endif
 
 /**
@@ -108,9 +108,15 @@ pskc_sign_x509 (pskc_t * container,
     }
 
   /* load private key, assuming that there is not password */
+# if HAVE_XMLSECCRYPTOAPPKEYLOADEX
+  dsigCtx->signKey =
+    xmlSecCryptoAppKeyLoadEx (key_file, xmlSecKeyDataTypePrivate,
+			      xmlSecKeyDataFormatPem, NULL, NULL, NULL);
+# else
   dsigCtx->signKey = xmlSecCryptoAppKeyLoad (key_file,
 					     xmlSecKeyDataFormatPem,
 					     NULL, NULL, NULL);
+# endif
   if (dsigCtx->signKey == NULL)
     {
       _pskc_debug ("xmlSecCryptoAppKeyLoad failed");

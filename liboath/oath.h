@@ -1,6 +1,6 @@
 /*
  * oath.h - header file for liboath
- * Copyright (C) 2009-2021 Simon Josefsson
+ * Copyright (C) 2009-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -29,7 +29,7 @@
  */
 
 #ifndef OATH_H
-#define OATH_H
+# define OATH_H
 
 /**
  * OATHAPI:
@@ -41,46 +41,46 @@
  *
  * https://www.gnu.org/software/gnulib/manual/html_node/Exported-Symbols-of-Shared-Libraries.html
  */
-#ifndef OATHAPI
-# if defined LIBOATH_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
-#  define OATHAPI __attribute__((__visibility__("default")))
-# elif defined LIBOATH_BUILDING && defined _MSC_VER && ! defined LIBOATH_STATIC
-#  define OATHAPI __declspec(dllexport)
-# elif defined _MSC_VER && ! defined LIBOATH_STATIC
-#  define OATHAPI __declspec(dllimport)
-# else
-#  define OATHAPI
+# ifndef OATHAPI
+#  if defined LIBOATH_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
+#   define OATHAPI __attribute__((__visibility__("default")))
+#  elif defined LIBOATH_BUILDING && defined _MSC_VER && ! defined LIBOATH_STATIC
+#   define OATHAPI __declspec(dllexport)
+#  elif defined _MSC_VER && ! defined LIBOATH_STATIC
+#   define OATHAPI __declspec(dllimport)
+#  else
+#   define OATHAPI
+#  endif
 # endif
-#endif
 
-#include <stdbool.h>		/* For bool. */
-#include <stdint.h>		/* For uint64_t, SIZE_MAX. */
-#include <string.h>		/* For size_t.t */
-#include <time.h>		/* For time_t. */
+# include <stdbool.h>		/* For bool. */
+# include <stdint.h>		/* For uint64_t, SIZE_MAX. */
+# include <string.h>		/* For size_t.t */
+# include <time.h>		/* For time_t. */
 
 # ifdef __cplusplus
 extern "C"
 {
 # endif
 
-/**
- * OATH_VERSION
- *
- * Pre-processor symbol with a string that describe the header file
- * version number.  Used together with oath_check_version() to verify
- * header file and run-time library consistency.
- */
-#define OATH_VERSION "2.6.7"
+  /**
+   * OATH_VERSION
+   *
+   * Pre-processor symbol with a string that describe the header file
+   * version number.  Used together with oath_check_version() to verify
+   * header file and run-time library consistency.
+   */
+# define OATH_VERSION "2.6.9"
 
-/**
- * OATH_VERSION_NUMBER
- *
- * Pre-processor symbol with a hexadecimal value describing the header
- * file version number.  For example, when the header version is 1.2.3
- * this symbol will have the value 0x01020300.  The last two digits
- * are only used between public releases, and will otherwise be 00.
- */
-#define OATH_VERSION_NUMBER 0x02060700
+  /**
+   * OATH_VERSION_NUMBER
+   *
+   * Pre-processor symbol with a hexadecimal value describing the header
+   * file version number.  For example, when the header version is 1.2.3
+   * this symbol will have the value 0x01020300.  The last two digits
+   * are only used between public releases, and will otherwise be 00.
+   */
+# define OATH_VERSION_NUMBER 0x02060900
 
 /**
  * oath_rc:
@@ -122,64 +122,64 @@ extern "C"
  * Note that the #oath_rc enumeration may be extended at a later date
  * to include new return codes.
  */
-typedef enum
-{
-  OATH_OK = 0,
-  OATH_CRYPTO_ERROR = -1,
-  OATH_INVALID_DIGITS = -2,
-  OATH_PRINTF_ERROR = -3,
-  OATH_INVALID_HEX = -4,
-  OATH_TOO_SMALL_BUFFER = -5,
-  OATH_INVALID_OTP = -6,
-  OATH_REPLAYED_OTP = -7,
-  OATH_BAD_PASSWORD = -8,
-  OATH_INVALID_COUNTER = -9,
-  OATH_INVALID_TIMESTAMP = -10,
-  OATH_NO_SUCH_FILE = -11,
-  OATH_UNKNOWN_USER = -12,
-  OATH_FILE_SEEK_ERROR = -13,
-  OATH_FILE_CREATE_ERROR = -14,
-  OATH_FILE_LOCK_ERROR = -15,
-  OATH_FILE_RENAME_ERROR = -16,
-  OATH_FILE_UNLINK_ERROR = -17,
-  OATH_TIME_ERROR = -18,
-  OATH_STRCMP_ERROR = -19,
-  OATH_INVALID_BASE32 = -20,
-  OATH_BASE32_OVERFLOW = -21,
-  OATH_MALLOC_ERROR = -22,
-  OATH_FILE_FLUSH_ERROR = -23,
-  OATH_FILE_SYNC_ERROR = -24,
-  OATH_FILE_CLOSE_ERROR = -25,
-  OATH_FILE_CHOWN_ERROR = -26,
-  OATH_FILE_STAT_ERROR = -27,
-  /* When adding anything here, update OATH_LAST_ERROR, errors.c
-     and tests/tst_errors.c. */
-  OATH_LAST_ERROR = -27
-} oath_rc;
+  typedef enum
+  {
+    OATH_OK = 0,
+    OATH_CRYPTO_ERROR = -1,
+    OATH_INVALID_DIGITS = -2,
+    OATH_PRINTF_ERROR = -3,
+    OATH_INVALID_HEX = -4,
+    OATH_TOO_SMALL_BUFFER = -5,
+    OATH_INVALID_OTP = -6,
+    OATH_REPLAYED_OTP = -7,
+    OATH_BAD_PASSWORD = -8,
+    OATH_INVALID_COUNTER = -9,
+    OATH_INVALID_TIMESTAMP = -10,
+    OATH_NO_SUCH_FILE = -11,
+    OATH_UNKNOWN_USER = -12,
+    OATH_FILE_SEEK_ERROR = -13,
+    OATH_FILE_CREATE_ERROR = -14,
+    OATH_FILE_LOCK_ERROR = -15,
+    OATH_FILE_RENAME_ERROR = -16,
+    OATH_FILE_UNLINK_ERROR = -17,
+    OATH_TIME_ERROR = -18,
+    OATH_STRCMP_ERROR = -19,
+    OATH_INVALID_BASE32 = -20,
+    OATH_BASE32_OVERFLOW = -21,
+    OATH_MALLOC_ERROR = -22,
+    OATH_FILE_FLUSH_ERROR = -23,
+    OATH_FILE_SYNC_ERROR = -24,
+    OATH_FILE_CLOSE_ERROR = -25,
+    OATH_FILE_CHOWN_ERROR = -26,
+    OATH_FILE_STAT_ERROR = -27,
+    /* When adding anything here, update OATH_LAST_ERROR, errors.c
+       and tests/tst_errors.c. */
+    OATH_LAST_ERROR = -27
+  } oath_rc;
 
 /* Global */
 
-extern OATHAPI int oath_init (void);
-extern OATHAPI int oath_done (void);
+  extern OATHAPI int oath_init (void);
+  extern OATHAPI int oath_done (void);
 
-extern OATHAPI const char *oath_check_version (const char *req_version);
+  extern OATHAPI const char *oath_check_version (const char *req_version);
 
 /* Error handling */
 
-extern OATHAPI const char *oath_strerror (int err);
-extern OATHAPI const char *oath_strerror_name (int err);
+  extern OATHAPI const char *oath_strerror (int err);
+  extern OATHAPI const char *oath_strerror_name (int err);
 
 /* Data encoding */
 
-extern OATHAPI int oath_hex2bin (const char *hexstr,
-				 char *binstr, size_t * binlen);
-extern OATHAPI void oath_bin2hex (const char *binstr, size_t binlen,
-				  char *hexstr);
+  extern OATHAPI int oath_hex2bin (const char *hexstr,
+				   char *binstr, size_t *binlen);
+  extern OATHAPI void oath_bin2hex (const char *binstr, size_t binlen,
+				    char *hexstr);
 
-extern OATHAPI int oath_base32_decode (const char *in, size_t inlen,
-				       char **out, size_t *outlen);
-extern OATHAPI int oath_base32_encode (const char *in, size_t inlen,
-				       char **out, size_t *outlen);
+  extern OATHAPI int oath_base32_decode (const char *in, size_t inlen,
+					 char **out, size_t *outlen);
+  extern OATHAPI int oath_base32_encode (const char *in, size_t inlen,
+					 char **out, size_t *outlen);
 
 /* HOTP */
 
@@ -192,7 +192,7 @@ extern OATHAPI int oath_base32_encode (const char *in, size_t inlen,
  *
  * Returns: Length of generated one-time password.
  **/
-#define OATH_HOTP_LENGTH(digits, checksum) (digits + (checksum ? 1 : 0))
+# define OATH_HOTP_LENGTH(digits, checksum) (digits + (checksum ? 1 : 0))
 
 /**
  * OATH_HOTP_DYNAMIC_TRUNCATION:
@@ -200,23 +200,22 @@ extern OATHAPI int oath_base32_encode (const char *in, size_t inlen,
  * Pre-processor symbol to indicate that no HOTP truncation should
  * occur, see oath_hotp_generate().
  */
-#define OATH_HOTP_DYNAMIC_TRUNCATION SIZE_MAX
+# define OATH_HOTP_DYNAMIC_TRUNCATION SIZE_MAX
 
-extern OATHAPI int
-oath_hotp_generate (const char *secret,
-		    size_t secret_length,
-		    uint64_t moving_factor,
-		    unsigned digits,
-		    bool add_checksum,
-		    size_t truncation_offset,
-		    char *output_otp);
+  extern OATHAPI int
+    oath_hotp_generate (const char *secret,
+			size_t secret_length,
+			uint64_t moving_factor,
+			unsigned digits,
+			bool add_checksum,
+			size_t truncation_offset, char *output_otp);
 
 
-extern OATHAPI int
-oath_hotp_validate (const char *secret,
-		    size_t secret_length,
-		    uint64_t start_moving_factor,
-		    size_t window, const char *otp);
+  extern OATHAPI int
+    oath_hotp_validate (const char *secret,
+			size_t secret_length,
+			uint64_t start_moving_factor,
+			size_t window, const char *otp);
 
 /**
  * oath_validate_strcmp_function:
@@ -244,8 +243,8 @@ oath_hotp_validate (const char *secret,
  *
  * Since: 1.6.0
  **/
-typedef int (*oath_validate_strcmp_function) (void *handle,
-					      const char *test_otp);
+  typedef int (*oath_validate_strcmp_function) (void *handle,
+						const char *test_otp);
 
 /**
  * oath_hotp_validate_strcmp_function:
@@ -255,16 +254,16 @@ typedef int (*oath_validate_strcmp_function) (void *handle,
  *
  * Since: 1.4.0
  */
-#define oath_hotp_validate_strcmp_function oath_validate_strcmp_function
+# define oath_hotp_validate_strcmp_function oath_validate_strcmp_function
 
-extern OATHAPI int
-oath_hotp_validate_callback (const char *secret,
-			     size_t secret_length,
-			     uint64_t start_moving_factor,
-			     size_t window,
-			     unsigned digits,
-			     oath_validate_strcmp_function strcmp_otp,
-			     void *strcmp_handle);
+  extern OATHAPI int
+    oath_hotp_validate_callback (const char *secret,
+				 size_t secret_length,
+				 uint64_t start_moving_factor,
+				 size_t window,
+				 unsigned digits,
+				 oath_validate_strcmp_function strcmp_otp,
+				 void *strcmp_handle);
 
 /* TOTP */
 
@@ -274,7 +273,7 @@ oath_hotp_validate_callback (const char *secret,
  * Pre-processor symbol to provide a default value for the TOTP
  * time-step value, see oath_totp_generate().
  */
-#define OATH_TOTP_DEFAULT_TIME_STEP_SIZE	30
+# define OATH_TOTP_DEFAULT_TIME_STEP_SIZE	30
 
 /**
  * OATH_TOTP_DEFAULT_START_TIME:
@@ -282,7 +281,7 @@ oath_hotp_validate_callback (const char *secret,
  * Pre-processor symbol to indicate that you want to use the Unix
  * epoch as a starting pointer for TOTP, see oath_totp_generate().
  */
-#define OATH_TOTP_DEFAULT_START_TIME		((time_t) 0)
+# define OATH_TOTP_DEFAULT_START_TIME		((time_t) 0)
 
 /**
  * oath_totp_flags:
@@ -293,132 +292,124 @@ oath_hotp_validate_callback (const char *secret,
  *
  * Since: 2.6.0
  */
-typedef enum {
-  OATH_TOTP_HMAC_SHA256 = 1,
-  OATH_TOTP_HMAC_SHA512 = 2
-} oath_totp_flags;
+  typedef enum
+  {
+    OATH_TOTP_HMAC_SHA256 = 1,
+    OATH_TOTP_HMAC_SHA512 = 2
+  } oath_totp_flags;
 
-extern OATHAPI int
-oath_totp_generate (const char *secret,
-		    size_t secret_length,
-		    time_t now,
-		    unsigned time_step_size,
-		    time_t start_offset,
-		    unsigned digits, char *output_otp);
+  extern OATHAPI int
+    oath_totp_generate (const char *secret,
+			size_t secret_length,
+			time_t now,
+			unsigned time_step_size,
+			time_t start_offset,
+			unsigned digits, char *output_otp);
 
-extern OATHAPI int
-oath_totp_generate2 (const char *secret,
-		     size_t secret_length,
-		     time_t now,
-		     unsigned time_step_size,
-		     time_t start_offset,
-		     unsigned digits,
-		     int flags,
-		     char *output_otp);
+  extern OATHAPI int
+    oath_totp_generate2 (const char *secret,
+			 size_t secret_length,
+			 time_t now,
+			 unsigned time_step_size,
+			 time_t start_offset,
+			 unsigned digits, int flags, char *output_otp);
 
-extern OATHAPI int
-oath_totp_validate (const char *secret,
-		    size_t secret_length,
-		    time_t now,
-		    unsigned time_step_size,
-		    time_t start_offset,
-		    size_t window, const char *otp);
+  extern OATHAPI int
+    oath_totp_validate (const char *secret,
+			size_t secret_length,
+			time_t now,
+			unsigned time_step_size,
+			time_t start_offset, size_t window, const char *otp);
 
-extern OATHAPI int
-oath_totp_validate_callback (const char *secret,
-			     size_t secret_length,
-			     time_t now,
-			     unsigned time_step_size,
-			     time_t start_offset,
-			     unsigned digits,
-			     size_t window,
-			     oath_validate_strcmp_function strcmp_otp,
-			     void *strcmp_handle);
+  extern OATHAPI int
+    oath_totp_validate_callback (const char *secret,
+				 size_t secret_length,
+				 time_t now,
+				 unsigned time_step_size,
+				 time_t start_offset,
+				 unsigned digits,
+				 size_t window,
+				 oath_validate_strcmp_function strcmp_otp,
+				 void *strcmp_handle);
 
-extern OATHAPI int
-oath_totp_validate2 (const char *secret,
-		     size_t secret_length,
-		     time_t now,
-		     unsigned time_step_size,
-		     time_t start_offset,
-		     size_t window,
-		     int *otp_pos,
-		     const char *otp);
+  extern OATHAPI int
+    oath_totp_validate2 (const char *secret,
+			 size_t secret_length,
+			 time_t now,
+			 unsigned time_step_size,
+			 time_t start_offset,
+			 size_t window, int *otp_pos, const char *otp);
 
-extern OATHAPI int
-oath_totp_validate2_callback (const char *secret,
-			      size_t secret_length,
-			      time_t now,
-			      unsigned time_step_size,
-			      time_t start_offset,
-			      unsigned digits,
-			      size_t window,
-			      int *otp_pos,
-			      oath_validate_strcmp_function strcmp_otp,
-			      void *strcmp_handle);
+  extern OATHAPI int
+    oath_totp_validate2_callback (const char *secret,
+				  size_t secret_length,
+				  time_t now,
+				  unsigned time_step_size,
+				  time_t start_offset,
+				  unsigned digits,
+				  size_t window,
+				  int *otp_pos,
+				  oath_validate_strcmp_function strcmp_otp,
+				  void *strcmp_handle);
 
-extern OATHAPI int
-oath_totp_validate3 (const char *secret,
-		     size_t secret_length,
-		     time_t now,
-		     unsigned time_step_size,
-		     time_t start_offset,
-		     size_t window,
-		     int *otp_pos,
-		     uint64_t *otp_counter,
-		     const char *otp);
+  extern OATHAPI int
+    oath_totp_validate3 (const char *secret,
+			 size_t secret_length,
+			 time_t now,
+			 unsigned time_step_size,
+			 time_t start_offset,
+			 size_t window,
+			 int *otp_pos,
+			 uint64_t * otp_counter, const char *otp);
 
-extern OATHAPI int
-oath_totp_validate3_callback (const char *secret,
-			      size_t secret_length,
-			      time_t now,
-			      unsigned time_step_size,
-			      time_t start_offset,
-			      unsigned digits,
-			      size_t window,
-			      int *otp_pos,
-			      uint64_t *otp_counter,
-			      oath_validate_strcmp_function strcmp_otp,
-			      void *strcmp_handle);
+  extern OATHAPI int
+    oath_totp_validate3_callback (const char *secret,
+				  size_t secret_length,
+				  time_t now,
+				  unsigned time_step_size,
+				  time_t start_offset,
+				  unsigned digits,
+				  size_t window,
+				  int *otp_pos,
+				  uint64_t * otp_counter,
+				  oath_validate_strcmp_function strcmp_otp,
+				  void *strcmp_handle);
 
-extern OATHAPI int
-oath_totp_validate4 (const char *secret,
-		     size_t secret_length,
-		     time_t now,
-		     unsigned time_step_size,
-		     time_t start_offset,
-		     size_t window,
-		     int *otp_pos,
-		     uint64_t *otp_counter,
-		     int flags,
-		     const char *otp);
+  extern OATHAPI int
+    oath_totp_validate4 (const char *secret,
+			 size_t secret_length,
+			 time_t now,
+			 unsigned time_step_size,
+			 time_t start_offset,
+			 size_t window,
+			 int *otp_pos,
+			 uint64_t * otp_counter, int flags, const char *otp);
 
-extern OATHAPI int
-oath_totp_validate4_callback (const char *secret,
-			      size_t secret_length,
-			      time_t now,
-			      unsigned time_step_size,
-			      time_t start_offset,
-			      unsigned digits,
-			      size_t window,
-			      int *otp_pos,
-			      uint64_t *otp_counter,
-			      int flags,
-			      oath_validate_strcmp_function strcmp_otp,
-			      void *strcmp_handle);
+  extern OATHAPI int
+    oath_totp_validate4_callback (const char *secret,
+				  size_t secret_length,
+				  time_t now,
+				  unsigned time_step_size,
+				  time_t start_offset,
+				  unsigned digits,
+				  size_t window,
+				  int *otp_pos,
+				  uint64_t * otp_counter,
+				  int flags,
+				  oath_validate_strcmp_function strcmp_otp,
+				  void *strcmp_handle);
 
 /* Usersfile */
 
-extern OATHAPI int
-oath_authenticate_usersfile (const char *usersfile,
-			     const char *username,
-			     const char *otp,
-			     size_t window,
-			     const char *passwd,
-			     time_t * last_otp);
+  extern OATHAPI int
+    oath_authenticate_usersfile (const char *usersfile,
+				 const char *username,
+				 const char *otp,
+				 size_t window,
+				 const char *passwd, time_t * last_otp);
 
 # ifdef __cplusplus
 }
 # endif
 
-#endif /* OATH_H */
+#endif				/* OATH_H */

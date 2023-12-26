@@ -1,6 +1,6 @@
 /*
  * parser.c - Parse PSKC data structure in XML and convert to internal format.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -47,8 +47,10 @@ parse_deviceinfo (xmlNode * x, struct pskc_key *kp, int *rc)
       if (strcmp ("Manufacturer", name) == 0)
 	{
 	  kp->device_manufacturer = content;
-	  if (strncmp ("oath.", content, 5) != 0
-	      && strncmp ("iana.", content, 5) != 0)
+	  if (content == NULL)
+	    _pskc_debug ("non-compliant NULL Manufacturer value");
+	  else if (strncmp ("oath.", content, 5) != 0
+		   && strncmp ("iana.", content, 5) != 0)
 	    _pskc_debug ("non-compliant Manufacturer value: %s", content);
 	}
       else if (strcmp ("SerialNo", name) == 0)
@@ -197,9 +199,11 @@ parse_data (xmlNode * x, struct pskc_key *kp, int *rc)
 		}
 	      else
 		{
+		  idx_t tmplen;
 		  ok = base64_decode_alloc (kp->key_b64secret, l,
-					    &kp->key_secret,
-					    &kp->key_secret_len);
+					    &kp->key_secret, &tmplen);
+		  if (kp->key_secret_len)
+		    kp->key_secret_len = tmplen;
 		  if (!ok)
 		    {
 		      _pskc_debug ("base64 decoding failed");

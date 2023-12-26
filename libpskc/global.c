@@ -1,6 +1,6 @@
 /*
  * global.c - Implementation of PSKC library global functions.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -28,8 +28,8 @@
 #include <libxml/parser.h>	/* xmlInitParser */
 #include <libxml/catalog.h>	/* xmlLoadCatalog */
 #ifdef USE_XMLSEC
-#include <xmlsec/xmlsec.h>
-#include <xmlsec/crypto.h>
+# include <xmlsec/xmlsec.h>
+# include <xmlsec/crypto.h>
 #endif
 
 int _pskc_init = 0;
@@ -73,13 +73,13 @@ pskc_global_init (void)
       return PSKC_XMLSEC_ERROR;
     }
 
-#ifdef XMLSEC_CRYPTO_DYNAMIC_LOADING
-  if (xmlSecCryptoDLLoadLibrary (BAD_CAST XMLSEC_CRYPTO) < 0)
+# if !defined XMLSEC_NO_CRYPTO_DYNAMIC_LOADING && defined XMLSEC_CRYPTO_DYNAMIC_LOADING
+  if (xmlSecCryptoDLLoadLibrary (xmlSecGetDefaultCrypto ()) < 0)
     {
       _pskc_debug ("xmlSecCryptoDLLoadLibrary failed");
       return PSKC_XMLSEC_ERROR;
     }
-#endif
+# endif
 
   if (xmlSecCryptoAppInit (NULL) < 0)
     {

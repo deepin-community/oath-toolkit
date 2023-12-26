@@ -11,7 +11,7 @@
     echo 'Contribute'
     echo '=========='
     echo ''
-    cat ../HACKING | sed -e '1,2d'
+    cat ../CONTRIBUTING.md | sed -e '1,2d'
 ) > contrib.txt
 
 (
@@ -29,7 +29,7 @@
     echo ''
     echo ".$LAST_DATE: OATH Toolkit $LAST_VERSION Released"
     cat intro-1.txt
-    sed -n 2,20p ../README
+    sed -n 2,18p ../README
     cat intro-2.txt
 ) > index.txt
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # tst_sign.sh - test that pskctool can sign and verify
-# Copyright (C) 2012-2021 Simon Josefsson
+# Copyright (C) 2012-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ $PSKCTOOL --info --strict --debug $pskc_all > tmp-pre-human.txt
 $PSKCTOOL --sign \
     --sign-key $pskc_ee_key \
     --sign-crt $pskc_ee_crt \
-    $pskc_all > tmp-signed.xml
+    $pskc_all | sed 's,4</X509Cert,4\n</X509Cert,' > tmp-signed.xml
 
 diff -ur $pskc_all_signed tmp-signed.xml
 

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>oath.h: OATH Library (liboath) Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="OATH Library (liboath) Manual">
 <link rel="up" href="intro.html" title="Liboath API Reference Manual">
 <link rel="prev" href="intro.html" title="Liboath API Reference Manual">
 <link rel="next" href="api-index-full.html" title="API Index">
-<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,8 +35,8 @@
 <a name="liboath-oath.h.functions"></a><h2>Functions</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="functions_return">
-<col class="functions_name">
+<col width="150px" class="functions_proto_type">
+<col class="functions_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -241,8 +241,8 @@
 <a name="liboath-oath.h.other"></a><h2>Types and Values</h2>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
-<col width="150px" class="name">
-<col class="description">
+<col width="150px" class="other_proto_type">
+<col class="other_proto_name">
 </colgroup>
 <tbody>
 <tr>
@@ -680,7 +680,7 @@ errors.</p>
 <hr>
 <div class="refsect2">
 <a name="OATH-HOTP-LENGTH:CAPS"></a><h3>OATH_HOTP_LENGTH()</h3>
-<pre class="programlisting">#define OATH_HOTP_LENGTH(digits, checksum) (digits + (checksum ? 1 : 0))
+<pre class="programlisting"># define OATH_HOTP_LENGTH(digits, checksum) (digits + (checksum ? 1 : 0))
 </pre>
 <p>Pre-processor macro to get length of a OTP string.</p>
 <div class="refsect3">
@@ -2021,7 +2021,7 @@ is returned.</p>
 <a name="liboath-oath.h.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="OATHAPI:CAPS"></a><h3>OATHAPI</h3>
-<pre class="programlisting">#  define OATHAPI __attribute__((__visibility__("default")))
+<pre class="programlisting">#   define OATHAPI __attribute__((__visibility__("default")))
 </pre>
 <p>Symbol holding shared library API visibility decorator.</p>
 <p>This is used internally by the library header file and should never
@@ -2031,7 +2031,7 @@ be used or modified by the application.</p>
 <hr>
 <div class="refsect2">
 <a name="OATH-VERSION:CAPS"></a><h3>OATH_VERSION</h3>
-<pre class="programlisting">#define OATH_VERSION "2.6.7"
+<pre class="programlisting"># define OATH_VERSION "2.6.9"
 </pre>
 <p>Pre-processor symbol with a string that describe the header file
 version number.  Used together with <a class="link" href="liboath-oath.h.html#oath-check-version" title="oath_check_version ()"><code class="function">oath_check_version()</code></a> to verify
@@ -2040,7 +2040,7 @@ header file and run-time library consistency.</p>
 <hr>
 <div class="refsect2">
 <a name="OATH-VERSION-NUMBER:CAPS"></a><h3>OATH_VERSION_NUMBER</h3>
-<pre class="programlisting">#define OATH_VERSION_NUMBER 0x02060700
+<pre class="programlisting"># define OATH_VERSION_NUMBER 0x02060900
 </pre>
 <p>Pre-processor symbol with a hexadecimal value describing the header
 file version number.  For example, when the header version is 1.2.3
@@ -2264,7 +2264,7 @@ to include new return codes.</p>
 <td class="enum_member_name"><p><a name="OATH-LAST-ERROR:CAPS"></a>OATH_LAST_ERROR</p></td>
 <td class="enum_member_description">
 <p>Meta-error indicating the last error code, for use
-  when iterating over all error codes or similar.</p>
+when iterating over all error codes or similar.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -2275,7 +2275,7 @@ to include new return codes.</p>
 <hr>
 <div class="refsect2">
 <a name="OATH-HOTP-DYNAMIC-TRUNCATION:CAPS"></a><h3>OATH_HOTP_DYNAMIC_TRUNCATION</h3>
-<pre class="programlisting">#define OATH_HOTP_DYNAMIC_TRUNCATION SIZE_MAX
+<pre class="programlisting"># define OATH_HOTP_DYNAMIC_TRUNCATION SIZE_MAX
 </pre>
 <p>Pre-processor symbol to indicate that no HOTP truncation should
 occur, see <a class="link" href="liboath-oath.h.html#oath-hotp-generate" title="oath_hotp_generate ()"><code class="function">oath_hotp_generate()</code></a>.</p>
@@ -2283,7 +2283,7 @@ occur, see <a class="link" href="liboath-oath.h.html#oath-hotp-generate" title="
 <hr>
 <div class="refsect2">
 <a name="oath-hotp-validate-strcmp-function"></a><h3>oath_hotp_validate_strcmp_function</h3>
-<pre class="programlisting">#define oath_hotp_validate_strcmp_function oath_validate_strcmp_function
+<pre class="programlisting"># define oath_hotp_validate_strcmp_function oath_validate_strcmp_function
 </pre>
 <p>Pre-processor compatibility definition for
 <a class="link" href="liboath-oath.h.html#oath-validate-strcmp-function" title="oath_validate_strcmp_function ()"><code class="function">oath_validate_strcmp_function()</code></a>.</p>
@@ -2292,7 +2292,7 @@ occur, see <a class="link" href="liboath-oath.h.html#oath-hotp-generate" title="
 <hr>
 <div class="refsect2">
 <a name="OATH-TOTP-DEFAULT-TIME-STEP-SIZE:CAPS"></a><h3>OATH_TOTP_DEFAULT_TIME_STEP_SIZE</h3>
-<pre class="programlisting">#define OATH_TOTP_DEFAULT_TIME_STEP_SIZE 30
+<pre class="programlisting"># define OATH_TOTP_DEFAULT_TIME_STEP_SIZE 30
 </pre>
 <p>Pre-processor symbol to provide a default value for the TOTP
 time-step value, see <a class="link" href="liboath-oath.h.html#oath-totp-generate" title="oath_totp_generate ()"><code class="function">oath_totp_generate()</code></a>.</p>
@@ -2300,7 +2300,7 @@ time-step value, see <a class="link" href="liboath-oath.h.html#oath-totp-generat
 <hr>
 <div class="refsect2">
 <a name="OATH-TOTP-DEFAULT-START-TIME:CAPS"></a><h3>OATH_TOTP_DEFAULT_START_TIME</h3>
-<pre class="programlisting">#define OATH_TOTP_DEFAULT_START_TIME		((time_t) 0)
+<pre class="programlisting"># define OATH_TOTP_DEFAULT_START_TIME		((time_t) 0)
 </pre>
 <p>Pre-processor symbol to indicate that you want to use the Unix
 epoch as a starting pointer for TOTP, see <a class="link" href="liboath-oath.h.html#oath-totp-generate" title="oath_totp_generate ()"><code class="function">oath_totp_generate()</code></a>.</p>
@@ -2340,6 +2340,6 @@ epoch as a starting pointer for TOTP, see <a class="link" href="liboath-oath.h.h
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.28</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

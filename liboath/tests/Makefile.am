@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as
@@ -34,7 +34,11 @@ ctests = \
 check_PROGRAMS = $(ctests) tst_usersfile
 dist_check_SCRIPTS = tst_usersfile.sh
 
-TESTS = $(ctests) $(dist_check_SCRIPTS)
+TESTS = $(ctests)
+
+if TEST_USERSFILE
+TESTS += $(dist_check_SCRIPTS)
+endif
 
 TESTS_ENVIRONMENT = EXEEXT=$(EXEEXT)
 

@@ -1,6 +1,6 @@
 /*
  * pskc/global.h - PSKC header file with library global function prototypes.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,7 +20,7 @@
  */
 
 #ifndef PSKC_GLOBAL_H
-#define PSKC_GLOBAL_H
+# define PSKC_GLOBAL_H
 
 /**
  * SECTION:global

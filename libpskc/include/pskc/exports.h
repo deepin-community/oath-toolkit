@@ -1,6 +1,6 @@
 /*
  * pskc/export.h - library visibility macro.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -20,18 +20,18 @@
  */
 
 #ifndef PSKC_EXPORTS_H
-#define PSKC_EXPORTS_H
+# define PSKC_EXPORTS_H
 
-#ifndef PSKCAPI
-#if defined PSKC_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
-#define PSKCAPI __attribute__((__visibility__("default")))
-#elif defined PSKC_BUILDING && defined _MSC_VER && ! defined PSKC_STATIC
-#define PSKCAPI __declspec(dllexport)
-#elif defined _MSC_VER && ! defined PSKC_STATIC
-#define PSKCAPI __declspec(dllimport)
-#else
-#define PSKCAPI
-#endif
-#endif
+# ifndef PSKCAPI
+#  if defined PSKC_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
+#   define PSKCAPI __attribute__((__visibility__("default")))
+#  elif defined PSKC_BUILDING && defined _MSC_VER && ! defined PSKC_STATIC
+#   define PSKCAPI __declspec(dllexport)
+#  elif defined _MSC_VER && ! defined PSKC_STATIC
+#   define PSKCAPI __declspec(dllimport)
+#  else
+#   define PSKCAPI
+#  endif
+# endif
 
 #endif /* PSKC_EXPORTS_H */

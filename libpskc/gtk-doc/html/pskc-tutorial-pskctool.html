@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Command line pskctool: PSKC Library (libpskc) Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="PSKC Library (libpskc) Manual">
 <link rel="up" href="pskc-tutorial.html" title="Part I. PSKC Tutorial">
 <link rel="prev" href="pskc-tutorial-libpskc-create.html" title="Create PSKC data">
 <link rel="next" href="pskc-tutorial-pskctool-validate.html" title="Validate PSKC against XML Schema">
-<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.33.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -74,42 +74,42 @@
 34
 35
 36</pre></td>
-        <td class="listing_code"><pre class="programlisting">Usage<span class="gtkdoc opt">:</span> pskctool <span class="gtkdoc opt">[</span>OPTION<span class="gtkdoc opt">]... [</span><span class="gtkdoc kwb">FILE</span><span class="gtkdoc opt">]...</span>
-Manipulate Portable Symmetric Key <span class="function">Container</span> <span class="gtkdoc opt">(</span>PSKC<span class="gtkdoc opt">)</span> data<span class="gtkdoc opt">.</span>
+        <td class="listing_code"><pre class="programlisting"><span class="nl">Usage</span><span class="p">:</span><span class="w"> </span><span class="n">pskctool</span><span class="w"> </span><span class="p">[</span><span class="n">OPTION</span><span class="p">]...</span><span class="w"> </span><span class="p">[</span><span class="kt">FILE</span><span class="p">]...</span><span class="w"></span>
+<span class="n">Manipulate</span><span class="w"> </span><span class="n">Portable</span><span class="w"> </span><span class="n">Symmetric</span><span class="w"> </span><span class="n">Key</span><span class="w"> </span><span class="n">Container</span><span class="w"> </span><span class="p">(</span><span class="n">PSKC</span><span class="p">)</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="w"></span>
 
-This tool allows you to parse<span class="gtkdoc opt">,</span> print<span class="gtkdoc opt">,</span> validate<span class="gtkdoc opt">,</span> sign <span class="keyword">and</span> verify PSKC data<span class="gtkdoc opt">.</span>  The
-input is provided in <span class="gtkdoc kwb">FILE</span> <span class="keyword">or</span> on standard input<span class="gtkdoc opt">.</span>
+<span class="n">This</span><span class="w"> </span><span class="n">tool</span><span class="w"> </span><span class="n">allows</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">parse</span><span class="p">,</span><span class="w"> </span><span class="n">print</span><span class="p">,</span><span class="w"> </span><span class="n">validate</span><span class="p">,</span><span class="w"> </span><span class="n">sign</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">verify</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="w">  </span><span class="n">The</span><span class="w"></span>
+<span class="n">input</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">provided</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="kt">FILE</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="w"></span>
 
-  <span class="gtkdoc opt">-</span>h<span class="gtkdoc opt">, --</span>help             Print help <span class="keyword">and</span> exit
-  <span class="gtkdoc opt">-</span>V<span class="gtkdoc opt">, --</span>version          Print version <span class="keyword">and</span> exit
-      <span class="gtkdoc opt">--</span>strict           Fail hard on PSKC parse <span class="function">error</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
-  <span class="gtkdoc opt">-</span>d<span class="gtkdoc opt">, --</span>debug            Show debug messages on <span class="function">stderr</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
-  <span class="gtkdoc opt">-</span>q<span class="gtkdoc opt">, --</span>quiet            Quiet <span class="function">operation</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
-  <span class="gtkdoc opt">-</span>v<span class="gtkdoc opt">, --</span>verbose          Produce more <span class="function">output</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
+<span class="w">  </span><span class="o">-</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">help</span><span class="w">             </span><span class="n">Print</span><span class="w"> </span><span class="n">help</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">exit</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">version</span><span class="w">          </span><span class="n">Print</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">exit</span><span class="w"></span>
+<span class="w">      </span><span class="o">--</span><span class="n">strict</span><span class="w">           </span><span class="n">Fail</span><span class="w"> </span><span class="n">hard</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">parse</span><span class="w"> </span><span class="n">error</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">debug</span><span class="w">            </span><span class="n">Show</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">messages</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">stderr</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">quiet</span><span class="w">            </span><span class="n">Quiet</span><span class="w"> </span><span class="n">operation</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">verbose</span><span class="w">          </span><span class="n">Produce</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">output</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
 
-Selecting one of the following modes is required<span class="gtkdoc opt">:</span>
+<span class="n">Selecting</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">modes</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">required</span><span class="o">:</span><span class="w"></span>
 
- Mode<span class="gtkdoc opt">:</span> info
-  <span class="gtkdoc opt">-</span>i<span class="gtkdoc opt">, --</span>info             Parse <span class="keyword">and</span> print human readable summary of PSKC input
-                           <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
+<span class="w"> </span><span class="nl">Mode</span><span class="p">:</span><span class="w"> </span><span class="n">info</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">info</span><span class="w">             </span><span class="n">Parse</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">print</span><span class="w"> </span><span class="n">human</span><span class="w"> </span><span class="n">readable</span><span class="w"> </span><span class="n">summary</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">input</span><span class="w"></span>
+<span class="w">                           </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
 
- Mode<span class="gtkdoc opt">:</span> validate
-  <span class="gtkdoc opt">-</span>e<span class="gtkdoc opt">, --</span>validate         Validate PSKC input against XML <span class="function">Schema</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
+<span class="w"> </span><span class="nl">Mode</span><span class="p">:</span><span class="w"> </span><span class="n">validate</span><span class="w"></span>
+<span class="w">  </span><span class="o">-</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">validate</span><span class="w">         </span><span class="n">Validate</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="n">against</span><span class="w"> </span><span class="n">XML</span><span class="w"> </span><span class="n">Schema</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
 
- Mode<span class="gtkdoc opt">:</span> sign
-  Digitally sign PSKC data
-      <span class="gtkdoc opt">--</span>sign             Sign PSKC <span class="function">input</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
-      <span class="gtkdoc opt">--</span>sign<span class="gtkdoc opt">-</span>key<span class="gtkdoc opt">=</span><span class="gtkdoc kwb">FILE</span>    Private key to sign with
-      <span class="gtkdoc opt">--</span>sign<span class="gtkdoc opt">-</span>crt<span class="gtkdoc opt">=</span><span class="gtkdoc kwb">FILE</span>    X<span class="number">.509</span> certificate to sign with
+<span class="w"> </span><span class="nl">Mode</span><span class="p">:</span><span class="w"> </span><span class="n">sign</span><span class="w"></span>
+<span class="w">  </span><span class="n">Digitally</span><span class="w"> </span><span class="n">sign</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">data</span><span class="w"></span>
+<span class="w">      </span><span class="o">--</span><span class="n">sign</span><span class="w">             </span><span class="n">Sign</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">input</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="o">--</span><span class="n">sign</span><span class="o">-</span><span class="n">key</span><span class="o">=</span><span class="kt">FILE</span><span class="w">    </span><span class="n">Private</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">sign</span><span class="w"> </span><span class="n">with</span><span class="w"></span>
+<span class="w">      </span><span class="o">--</span><span class="n">sign</span><span class="o">-</span><span class="n">crt</span><span class="o">=</span><span class="kt">FILE</span><span class="w">    </span><span class="n">X</span><span class="mf">.509</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">sign</span><span class="w"> </span><span class="n">with</span><span class="w"></span>
 
- Mode<span class="gtkdoc opt">:</span> verify
-  Verify digitally <span class="gtkdoc kwb">signed</span> PSKC data
-      <span class="gtkdoc opt">--</span>verify           Verify <span class="gtkdoc kwb">signed</span> PSKC <span class="function">input</span>  <span class="gtkdoc opt">(</span><span class="keyword">default</span><span class="gtkdoc opt">=</span>off<span class="gtkdoc opt">)</span>
-      <span class="gtkdoc opt">--</span>verify<span class="gtkdoc opt">-</span>crt<span class="gtkdoc opt">=</span><span class="gtkdoc kwb">FILE</span>  Trusted X<span class="number">.509</span> certificate <span class="keyword">for</span> verification
+<span class="w"> </span><span class="nl">Mode</span><span class="p">:</span><span class="w"> </span><span class="n">verify</span><span class="w"></span>
+<span class="w">  </span><span class="n">Verify</span><span class="w"> </span><span class="n">digitally</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">data</span><span class="w"></span>
+<span class="w">      </span><span class="o">--</span><span class="n">verify</span><span class="w">           </span><span class="n">Verify</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="n">PSKC</span><span class="w"> </span><span class="n">input</span><span class="w">  </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="n">off</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="o">--</span><span class="n">verify</span><span class="o">-</span><span class="n">crt</span><span class="o">=</span><span class="kt">FILE</span><span class="w">  </span><span class="n">Trusted</span><span class="w"> </span><span class="n">X</span><span class="mf">.509</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">verification</span><span class="w"></span>
 
-Report bugs to<span class="gtkdoc opt">:</span> oath<span class="gtkdoc opt">-</span>toolkit<span class="gtkdoc opt">-</span>help&#64;nongnu<span class="gtkdoc opt">.</span>org
-pskctool home page<span class="gtkdoc opt">: &lt;</span>https<span class="gtkdoc opt">:</span><span class="gtkdoc slc">//www.nongnu.org/oath-toolkit/&gt;</span>
-General help <span class="keyword">using</span> GNU software<span class="gtkdoc opt">: &lt;</span>https<span class="gtkdoc opt">:</span><span class="gtkdoc slc">//www.gnu.org/gethelp/&gt;</span></pre></td>
+<span class="n">Report</span><span class="w"> </span><span class="n">bugs</span><span class="w"> </span><span class="n">to</span><span class="o">:</span><span class="w"> </span><span class="n">oath</span><span class="o">-</span><span class="n">toolkit</span><span class="o">-</span><span class="n">help</span><span class="err">@</span><span class="n">nongnu</span><span class="p">.</span><span class="n">org</span><span class="w"></span>
+<span class="n">pskctool</span><span class="w"> </span><span class="n">home</span><span class="w"> </span><span class="n">page</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">https</span><span class="o">:</span><span class="c1">//www.nongnu.org/oath-toolkit/&gt;</span>
+<span class="n">General</span><span class="w"> </span><span class="n">help</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">GNU</span><span class="w"> </span><span class="n">software</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">https</span><span class="o">:</span><span class="c1">//www.gnu.org/gethelp/&gt;</span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -162,31 +162,31 @@ General help <span class="keyword">using</span> GNU software<span class="gtkdoc 
 23
 24
 25</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="gtkdoc opt">&lt;?</span>xml version<span class="gtkdoc opt">=</span><span class="string">&quot;1.0&quot;</span> encoding<span class="gtkdoc opt">=</span><span class="string">&quot;UTF-8&quot;</span><span class="gtkdoc opt">?&gt;</span>
-<span class="gtkdoc opt">&lt;</span>KeyContainer Version<span class="gtkdoc opt">=</span><span class="string">&quot;1.0&quot;</span>
-	      xmlns<span class="gtkdoc opt">=</span><span class="string">&quot;urn:ietf:params:xml:ns:keyprov:pskc&quot;</span><span class="gtkdoc opt">&gt;</span>
-  <span class="gtkdoc opt">&lt;</span>KeyPackage<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;</span>DeviceInfo<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>Manufacturer<span class="gtkdoc opt">&gt;</span>Manufacturer<span class="gtkdoc opt">&lt;/</span>Manufacturer<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>SerialNo<span class="gtkdoc opt">&gt;</span><span class="number">987654321</span><span class="gtkdoc opt">&lt;/</span>SerialNo<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;/</span>DeviceInfo<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;</span>Key Id<span class="gtkdoc opt">=</span><span class="string">&quot;12345678&quot;</span>
-         Algorithm<span class="gtkdoc opt">=</span><span class="string">&quot;urn:ietf:params:xml:ns:keyprov:pskc:hotp&quot;</span><span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>AlgorithmParameters<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;</span>ResponseFormat Length<span class="gtkdoc opt">=</span><span class="string">&quot;8&quot;</span> Encoding<span class="gtkdoc opt">=</span><span class="string">&quot;DECIMAL&quot;</span><span class="gtkdoc opt">/&gt;</span>
-      <span class="gtkdoc opt">&lt;/</span>AlgorithmParameters<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;</span>Data<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;</span>Secret<span class="gtkdoc opt">&gt;</span>
-          <span class="gtkdoc opt">&lt;</span>PlainValue<span class="gtkdoc opt">&gt;</span>MTIzNDU2Nzg5MDEyMzQ1Njc4OTA<span class="gtkdoc opt">=</span>
-          <span class="gtkdoc opt">&lt;/</span>PlainValue<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;/</span>Secret<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;</span>Counter<span class="gtkdoc opt">&gt;</span>
-          <span class="gtkdoc opt">&lt;</span>PlainValue<span class="gtkdoc opt">&gt;</span><span class="number">0</span><span class="gtkdoc opt">&lt;/</span>PlainValue<span class="gtkdoc opt">&gt;</span>
-        <span class="gtkdoc opt">&lt;/</span>Counter<span class="gtkdoc opt">&gt;</span>
-      <span class="gtkdoc opt">&lt;/</span>Data<span class="gtkdoc opt">&gt;</span>
-    <span class="gtkdoc opt">&lt;/</span>Key<span class="gtkdoc opt">&gt;</span>
-  <span class="gtkdoc opt">&lt;/</span>KeyPackage<span class="gtkdoc opt">&gt;</span>
-<span class="gtkdoc opt">&lt;/</span>KeyContainer<span class="gtkdoc opt">&gt;</span></pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="o">&lt;?</span><span class="n">xml</span><span class="w"> </span><span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span><span class="w"> </span><span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">KeyContainer</span><span class="w"> </span><span class="n">Version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span><span class="w"></span>
+<span class="w">	      </span><span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;urn:ietf:params:xml:ns:keyprov:pskc&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">KeyPackage</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">DeviceInfo</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">Manufacturer</span><span class="o">&gt;</span><span class="n">Manufacturer</span><span class="o">&lt;/</span><span class="n">Manufacturer</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">SerialNo</span><span class="o">&gt;</span><span class="mi">987654321</span><span class="o">&lt;/</span><span class="n">SerialNo</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">DeviceInfo</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">Key</span><span class="w"> </span><span class="n">Id</span><span class="o">=</span><span class="s">&quot;12345678&quot;</span><span class="w"></span>
+<span class="w">         </span><span class="n">Algorithm</span><span class="o">=</span><span class="s">&quot;urn:ietf:params:xml:ns:keyprov:pskc:hotp&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">AlgorithmParameters</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">ResponseFormat</span><span class="w"> </span><span class="n">Length</span><span class="o">=</span><span class="s">&quot;8&quot;</span><span class="w"> </span><span class="n">Encoding</span><span class="o">=</span><span class="s">&quot;DECIMAL&quot;</span><span class="o">/&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">AlgorithmParameters</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">Secret</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="n">MTIzNDU2Nzg5MDEyMzQ1Njc4OTA</span><span class="o">=</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;/</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">Secret</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">Counter</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="o">&lt;</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">PlainValue</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;/</span><span class="n">Counter</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="o">&lt;/</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">Key</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">&lt;/</span><span class="n">KeyPackage</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;/</span><span class="n">KeyContainer</span><span class="o">&gt;</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -215,20 +215,20 @@ General help <span class="keyword">using</span> GNU software<span class="gtkdoc 
 12
 13
 14</pre></td>
-        <td class="listing_code"><pre class="programlisting">Portable Symmetric Key <span class="function">Container</span> <span class="gtkdoc opt">(</span>PSKC<span class="gtkdoc opt">):</span>
-	Version<span class="gtkdoc opt">:</span> <span class="number">1.0</span>
-	Signed<span class="gtkdoc opt">:</span> NO
-	KeyPackage <span class="number">0</span><span class="gtkdoc opt">:</span>
-		DeviceInfo<span class="gtkdoc opt">:</span>
-			Manufacturer<span class="gtkdoc opt">:</span> Manufacturer
-			SerialNo<span class="gtkdoc opt">:</span> <span class="number">987654321</span>
-		Key<span class="gtkdoc opt">:</span>
-			Id<span class="gtkdoc opt">:</span> <span class="number">12345678</span>
-			Algorithm<span class="gtkdoc opt">:</span> urn<span class="gtkdoc opt">:</span>ietf<span class="gtkdoc opt">:</span>params<span class="gtkdoc opt">:</span>xml<span class="gtkdoc opt">:</span>ns<span class="gtkdoc opt">:</span>keyprov<span class="gtkdoc opt">:</span>pskc<span class="gtkdoc opt">:</span>hotp
-			Key <span class="function">Secret</span> <span class="gtkdoc opt">(</span>base64<span class="gtkdoc opt">):</span> MTIzNDU2Nzg5MDEyMzQ1Njc4OTA<span class="gtkdoc opt">=</span>
-			Key Counter<span class="gtkdoc opt">:</span> <span class="number">0</span>
-			Response Format Length<span class="gtkdoc opt">:</span> <span class="number">8</span>
-			Response Format Encoding<span class="gtkdoc opt">:</span> DECIMAL</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="n">Portable</span><span class="w"> </span><span class="n">Symmetric</span><span class="w"> </span><span class="n">Key</span><span class="w"> </span><span class="n">Container</span><span class="w"> </span><span class="p">(</span><span class="n">PSKC</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">	</span><span class="nl">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"></span>
+<span class="w">	</span><span class="nl">Signed</span><span class="p">:</span><span class="w"> </span><span class="n">NO</span><span class="w"></span>
+<span class="w">	</span><span class="n">KeyPackage</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="w"></span>
+<span class="w">		</span><span class="nl">DeviceInfo</span><span class="p">:</span><span class="w"></span>
+<span class="w">			</span><span class="nl">Manufacturer</span><span class="p">:</span><span class="w"> </span><span class="n">Manufacturer</span><span class="w"></span>
+<span class="w">			</span><span class="nl">SerialNo</span><span class="p">:</span><span class="w"> </span><span class="mi">987654321</span><span class="w"></span>
+<span class="w">		</span><span class="nl">Key</span><span class="p">:</span><span class="w"></span>
+<span class="w">			</span><span class="nl">Id</span><span class="p">:</span><span class="w"> </span><span class="mi">12345678</span><span class="w"></span>
+<span class="w">			</span><span class="nl">Algorithm</span><span class="p">:</span><span class="w"> </span><span class="n">urn</span><span class="o">:</span><span class="n">ietf</span><span class="o">:</span><span class="n">params</span><span class="o">:</span><span class="n">xml</span><span class="o">:</span><span class="n">ns</span><span class="o">:</span><span class="n">keyprov</span><span class="o">:</span><span class="n">pskc</span><span class="o">:</span><span class="n">hotp</span><span class="w"></span>
+<span class="w">			</span><span class="n">Key</span><span class="w"> </span><span class="n">Secret</span><span class="w"> </span><span class="p">(</span><span class="n">base64</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">MTIzNDU2Nzg5MDEyMzQ1Njc4OTA</span><span class="o">=</span><span class="w"></span>
+<span class="w">			</span><span class="n">Key</span><span class="w"> </span><span class="n">Counter</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">			</span><span class="n">Response</span><span class="w"> </span><span class="n">Format</span><span class="w"> </span><span class="n">Length</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+<span class="w">			</span><span class="n">Response</span><span class="w"> </span><span class="n">Format</span><span class="w"> </span><span class="n">Encoding</span><span class="o">:</span><span class="w"> </span><span class="n">DECIMAL</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -265,12 +265,12 @@ General help <span class="keyword">using</span> GNU software<span class="gtkdoc 
 4
 5
 6</pre></td>
-        <td class="listing_code"><pre class="programlisting">debug<span class="gtkdoc opt">:</span> unknown <span class="gtkdoc opt">&lt;</span>KeyContainer<span class="gtkdoc opt">&gt;</span> element <span class="gtkdoc opt">&lt;</span>EncryptionKey<span class="gtkdoc opt">&gt;</span>
-debug<span class="gtkdoc opt">:</span> unknown <span class="gtkdoc opt">&lt;</span>KeyContainer<span class="gtkdoc opt">&gt;</span> element <span class="gtkdoc opt">&lt;</span>MACMethod<span class="gtkdoc opt">&gt;</span>
-debug<span class="gtkdoc opt">:</span> non<span class="gtkdoc opt">-</span>compliant Manufacturer value<span class="gtkdoc opt">:</span> Manufacturer
-debug<span class="gtkdoc opt">:</span> unknown <span class="gtkdoc opt">&lt;</span>Secret<span class="gtkdoc opt">&gt;</span> element <span class="gtkdoc opt">&lt;</span>EncryptedValue<span class="gtkdoc opt">&gt;</span>
-debug<span class="gtkdoc opt">:</span> unknown <span class="gtkdoc opt">&lt;</span>Secret<span class="gtkdoc opt">&gt;</span> element <span class="gtkdoc opt">&lt;</span>ValueMAC<span class="gtkdoc opt">&gt;</span>
-warning<span class="gtkdoc opt">:</span> parse <span class="function">error</span> <span class="gtkdoc opt">(</span>use <span class="gtkdoc opt">-</span>d to diagnose<span class="gtkdoc opt">),</span> output may be incomplete</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="nl">debug</span><span class="p">:</span><span class="w"> </span><span class="n">unknown</span><span class="w"> </span><span class="o">&lt;</span><span class="n">KeyContainer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">&lt;</span><span class="n">EncryptionKey</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nl">debug</span><span class="p">:</span><span class="w"> </span><span class="n">unknown</span><span class="w"> </span><span class="o">&lt;</span><span class="n">KeyContainer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">&lt;</span><span class="n">MACMethod</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nl">debug</span><span class="p">:</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">compliant</span><span class="w"> </span><span class="n">Manufacturer</span><span class="w"> </span><span class="n">value</span><span class="o">:</span><span class="w"> </span><span class="n">Manufacturer</span><span class="w"></span>
+<span class="nl">debug</span><span class="p">:</span><span class="w"> </span><span class="n">unknown</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Secret</span><span class="o">&gt;</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">&lt;</span><span class="n">EncryptedValue</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nl">debug</span><span class="p">:</span><span class="w"> </span><span class="n">unknown</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Secret</span><span class="o">&gt;</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="o">&lt;</span><span class="n">ValueMAC</span><span class="o">&gt;</span><span class="w"></span>
+<span class="nl">warning</span><span class="p">:</span><span class="w"> </span><span class="n">parse</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">(</span><span class="n">use</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">diagnose</span><span class="p">),</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">incomplete</span><span class="w"></span></pre></td>
       </tr>
     </tbody>
   </table>
@@ -287,6 +287,6 @@ warning<span class="gtkdoc opt">:</span> parse <span class="function">error</spa
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.28</div>
+<hr>Generated by GTK-Doc V1.33.1</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ EXTRA_DIST = README
 pammoddir = $(PAMDIR)
 pammod_LTLIBRARIES = pam_oath.la
 
-pam_oath_la_SOURCES = pam_oath.c
+pam_oath_la_SOURCES = pam_oath.c pam_modutil.c pam_modutil.h
 # XXX add -Wl,-x too?  PAM documentation suggests it.
 pam_oath_la_LIBADD = ../liboath/liboath.la
 pam_oath_la_LDFLAGS = -module -avoid-version

@@ -1,6 +1,6 @@
 /*
  * test-pam_oath-root.c - self-test PAM module as root
- * Copyright (C) 2011-2021 Simon Josefsson
+ * Copyright (C) 2011-2023 Simon Josefsson
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,19 +37,19 @@ static size_t loop;
   887919
   320986
 
-  Run 'oathtool --totp --now=2006-12-07 00 -w10' to generate:
+  Run 'oathtool --totp --now="2006-12-07 UTC" 00 -w10' to generate:
 
-  140852
-  299833
-  044488
-  584072
-  000706
-  512368
-  094088
-  755942
-  936706
-  369736
-  787399
+  963013
+  068866
+  734019
+  038980
+  630208
+  533058
+  042289
+  046988
+  047407
+  892423
+  619507
 */
 
 /* *INDENT-OFF* */
@@ -59,23 +59,31 @@ static const struct {
   int expectrc;
 } tv[] = {
   { "user1", "incorrectpassword", PAM_AUTH_ERR },
+  { "user1", "bad", PAM_AUTH_ERR },
+  { "user1", "123456", PAM_AUTH_ERR },
+  { "user1", "bad328482", PAM_AUTH_ERR },
   { "user1", "328482", PAM_SUCCESS },
   { "user1", "073348", PAM_SUCCESS },
+  { "user1", "073348", PAM_AUTH_ERR },
   { "user1", "812658", PAM_AUTH_ERR },
   { "user2", "bad", PAM_AUTH_ERR },
   { "user2", "328482", PAM_AUTH_ERR },
+  { "user2", "pw123456", PAM_AUTH_ERR },
   { "user2", "pw328482", PAM_SUCCESS },
   { "user2", "pw073348", PAM_SUCCESS },
+  { "user2", "pw073348", PAM_AUTH_ERR },
   { "user2", "pw812658", PAM_AUTH_ERR },
   { "user2", "bad887919", PAM_AUTH_ERR },
   { "user2", "pw887919", PAM_SUCCESS },
   { "user3", "bad", PAM_AUTH_ERR },
-  { "user3", "299833", PAM_SUCCESS },
-  { "user3", "299833", PAM_AUTH_ERR },
-  { "user3", "140852", PAM_AUTH_ERR },
-  { "user3", "936706", PAM_SUCCESS },
-  { "user3", "512368", PAM_AUTH_ERR },
-  { "user3", "787399", PAM_SUCCESS },
+  { "user3", "123456", PAM_AUTH_ERR },
+  { "user3", "068866", PAM_SUCCESS },
+  { "user3", "068866", PAM_AUTH_ERR },
+  { "user3", "963013", PAM_AUTH_ERR },
+  { "user3", "047407", PAM_SUCCESS },
+  { "user3", "533058", PAM_AUTH_ERR },
+  { "user3", "619507", PAM_SUCCESS },
+  { "user4", NULL, PAM_USER_UNKNOWN },  // unconfigured user
 };
 /* *INDENT-ON* */
 
@@ -85,19 +93,33 @@ oath_conv (int num_msg, const struct pam_message **msg,
 {
   struct pam_response *out;
 
+  printf ("Got prompt (type %d): %s\n", msg[0]->msg_style, msg[0]->msg);
+
   if (num_msg != 1)
     {
       printf ("num_msg != 1?!\n");
-      exit (EXIT_FAILURE);
+      return PAM_CONV_ERR;
+    }
+
+  // If user is unknown, module should not prompt for password
+  if (tv[loop].passwd == NULL)
+    {
+      printf ("prompt not expected for unknown user (%s)\n", tv[loop].user);
+      return PAM_CONV_ERR;
     }
 
   out = malloc (sizeof (*out));
   if (out == NULL)
     return PAM_BUF_ERR;
 
-  printf ("Got prompt (type %d): %s\n", msg[0]->msg_style, msg[0]->msg);
   out[0].resp_retcode = 0;
   out[0].resp = strdup (tv[loop].passwd);
+
+  if (out[0].resp == NULL)
+    {
+      free (out);
+      return PAM_BUF_ERR;
+    }
 
   *resp = out;
 
@@ -129,7 +151,7 @@ main (int argc, char **argv)
       rc = pam_authenticate (pamh, 0);
       if (rc == PAM_MODULE_UNKNOWN)
 	{
-	  fprintf (stderr, "pam_oath.so not found in /lib/*/security/.\n");
+	  fprintf (stderr, "pam_oath.so not found.\n");
 	  return 77;
 	}
       if (rc != tv[loop].expectrc)

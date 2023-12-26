@@ -1,6 +1,6 @@
 /*
  * coding.c - data encoding functions
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -207,7 +207,8 @@ oath_bin2hex (const char *binstr, size_t binlen, char *hexstr)
 int
 oath_base32_decode (const char *in, size_t inlen, char **out, size_t *outlen)
 {
-  size_t i, j, tmplen = 0;
+  size_t i, j;
+  idx_t tmplen = 0;
   char *in_upcase;
   char *tmp;
   bool ok;

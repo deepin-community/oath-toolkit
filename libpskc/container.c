@@ -1,6 +1,6 @@
 /*
  * container.c - implementation of PSKC container handling
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -1273,7 +1273,7 @@ pskc_set_key_data_b64secret (pskc_key_t * key, const char *b64secret)
 {
   size_t l = strlen (b64secret);
   char *out, *b64copy;
-  size_t outlen;
+  idx_t outlen;
   bool ok;
 
   b64copy = malloc (l + 1);

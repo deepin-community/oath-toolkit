@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,3 +15,6 @@
 
 TESTS = tst_oathtool.sh tst_hyphen.sh
 dist_check_SCRIPTS = tst_oathtool.sh tst_hyphen.sh
+
+TESTS_ENVIRONMENT = \
+	OATHTOOL=../oathtool$(EXEEXT)

@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as
@@ -15,7 +15,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301 USA
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
 SUBDIRS = gl . tests gtk-doc man
 

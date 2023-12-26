@@ -1,4 +1,4 @@
-# Copyright (C) 2012-2021 Simon Josefsson
+# Copyright (C) 2012-2023 Simon Josefsson
 
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as
@@ -63,6 +63,20 @@ fi
 AC_MSG_CHECKING([if xmlsec should be used])
 AC_MSG_RESULT($xmlsec)
 
+save_LIBS=$LIBS
+save_CFLAGS=$CFLAGS
+LIBS="$LIBS $XMLSEC_LIBS"
+CFLAGS="$CFLAGS $XMLSEC_CFLAGS"
+AC_MSG_CHECKING([for xmlSecCryptoAppKeyLoadEx])
+AC_LINK_IFELSE([AC_LANG_PROGRAM([#include <xmlsec/crypto.h>],
+                                [xmlSecCryptoAppKeyLoadEx(NULL, 0, 0, NULL, NULL, NULL);])],
+               [AC_MSG_RESULT(yes)
+                AC_DEFINE([HAVE_XMLSECCRYPTOAPPKEYLOADEX], 1,
+		          [If xmlsec has xmlSecCryptoAppKeyLoadEx])],
+               [AC_MSG_RESULT(no)])
+LIBS=$save_LIBS
+CFLAGS=$save_CFLAGS
+
 AC_SUBST(pskcschemadir, "\$(datarootdir)/xml/pskc")
 AC_ARG_WITH(pskc-schema-dir,
   AS_HELP_STRING([--with-pskc-schema-dir=DIR],
@@ -124,7 +138,6 @@ AC_CONFIG_FILES([
   Makefile
   examples/Makefile
   gl/Makefile
-  gl/tests/Makefile
   gtk-doc/Makefile
   gtk-doc/version.xml
   include/Makefile

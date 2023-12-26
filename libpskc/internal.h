@@ -1,6 +1,6 @@
 /*
  * internal.h - Internal prototypes.
- * Copyright (C) 2012-2021 Simon Josefsson
+ * Copyright (C) 2012-2023 Simon Josefsson
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
@@ -99,7 +99,7 @@ struct pskc_key
 #endif
 
 #ifdef INTERNAL_NEED_PSKC_STRUCT
-#include <libxml/parser.h>
+# include <libxml/parser.h>
 struct pskc
 {
   /* raw XML */
@@ -116,9 +116,9 @@ struct pskc
 #endif
 
 #if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 7)
-#define _GL_ATTRIBUTE_FORMAT(spec) __attribute__ ((__format__ spec))
+# define _GL_ATTRIBUTE_FORMAT(spec) __attribute__ ((__format__ spec))
 #else
-#define _GL_ATTRIBUTE_FORMAT(spec)	/* empty */
+# define _GL_ATTRIBUTE_FORMAT(spec)	/* empty */
 #endif
 
 extern void

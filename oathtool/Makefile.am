@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2021 Simon Josefsson
+# Copyright (C) 2009-2023 Simon Josefsson
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@ MAINTAINERCLEANFILES = $(dist_man_MANS)
 EXTRA_DIST = oathtool.h2m
 
 oathtool.1: $(srcdir)/oathtool.c $(srcdir)/oathtool.ggo $(srcdir)/oathtool.h2m $(srcdir)/configure.ac
+	$(MAKE) $(builddir)/oathtool$(EXEEXT)
 	$(AM_V_GEN)$(HELP2MAN) \
 		--include $(srcdir)/oathtool.h2m \
 		--no-info \
